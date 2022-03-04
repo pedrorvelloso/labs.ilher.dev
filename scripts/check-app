@@ -5,5 +5,5 @@ npx concurrently \
   --prefix "[{name}]" \
   --names "type,lint" \
   --prefix-colors "bgBlue.bold.white,bgGreen.bold.white" \
-    "pnpm check:types" \
-    "pnpm check:lint"
+    "yarn check:types" \
+    "yarn check:lint"
