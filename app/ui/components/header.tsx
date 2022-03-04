@@ -1,10 +1,5 @@
 import { Icon } from './icon'
-
-const NavLink = () => (
-  <div className="flex h-full items-center p-5 relative transition-colors after:absolute after:h-[2px] after:w-0 after:bottom-0 after:left-0 after:right-0 after:transition-all after:bg-indigo-600 hover:after:w-full hover:text-white">
-    Home
-  </div>
-)
+import { NavAnchor } from './nav-anchor'
 
 export const Header = () => {
   return (
@@ -13,16 +8,22 @@ export const Header = () => {
         <img src="/images/logo.png" alt="LABS logo" />
         <ul className="flex text-neutral-400 h-full">
           <li>
-            <NavLink />
+            <NavAnchor href="/">Home</NavAnchor>
           </li>
           <li>
-            <NavLink />
+            <NavAnchor href="/blog" color="green">
+              Blog
+            </NavAnchor>
           </li>
           <li>
-            <NavLink />
+            <NavAnchor href="/watch" color="purple">
+              Watch
+            </NavAnchor>
           </li>
           <li>
-            <NavLink />
+            <NavAnchor href="/about" color="orange">
+              About
+            </NavAnchor>
           </li>
         </ul>
         <ul className="flex text-neutral-400 gap-5">
