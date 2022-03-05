@@ -4,11 +4,14 @@ import { Anchor, AnchorProps } from './anchor'
 
 interface NavAnchorProps extends Omit<AnchorProps, 'isNav'> {
   color?: 'indigo' | 'green' | 'orange' | 'purple'
+  sideAnimation?: boolean
 }
 
 export const NavAnchor: React.FC<NavAnchorProps> = ({
   children,
   color = 'indigo',
+  sideAnimation,
+  className,
   ...props
 }) => (
   <Anchor
@@ -16,19 +19,30 @@ export const NavAnchor: React.FC<NavAnchorProps> = ({
     isNav
     className={({ isActive }) =>
       clsx(
-        'flex h-full items-center py-5 w-20 justify-center relative transition-colors after:absolute after:h-[2px] after:bottom-0 after:left-0 after:right-0 after:transition-all',
+        'flex h-full items-center py-5 relative transition-colors after:absolute after:transition-all',
         {
-          'after:w-0 hover:after:w-full hover:text-white hover:font-bold':
-            !isActive,
-          'after:w-full text-white font-bold': isActive,
+          'after:w-0 after:h-[2px] after:bottom-0 after:left-0 after:right-0 justify-center w-20':
+            !sideAnimation,
+          'hover:after:w-full hover:text-white hover:font-bold':
+            !sideAnimation && !isActive,
+          'after:w-full text-white font-bold': !sideAnimation && isActive,
+          // side bar
+          'after:h-0 after:w-1 after:bottom-0 after:right-0 px-5':
+            sideAnimation,
+          // side bar hover w/o active
+          'hover:after:h-full hover:text-white hover:font-bold':
+            sideAnimation && !isActive,
+          // side bar active
+          'after:h-full text-white font-bold': sideAnimation && isActive,
+          // color scheme
           'after:bg-indigo-600': color === 'indigo',
           'after:bg-green-600': color === 'green',
           'after:bg-orange-600': color === 'orange',
           'after:bg-purple-600': color === 'purple',
         },
+        className,
       )
     }
-    // className="flex h-full items-center p-5 relative transition-colors after:absolute after:h-[2px] after:w-0 after:bottom-0 after:left-0 after:right-0 after:transition-all after:bg-indigo-600 hover:after:w-full hover:text-white"
   >
     {children}
   </Anchor>
