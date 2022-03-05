@@ -15,7 +15,7 @@ const Menu = ({
   className?: string
 }) => {
   const classNameDrawer =
-    'bg-gradient-to-tl from-neutral-900 to-neutral-800 ml-5 my-5 rounded-l-md'
+    'bg-gradient-to-tl from-neutral-900 to-neutral-800 ml-5 my-5 rounded-l-md select-none'
 
   return (
     <ul className={className}>
