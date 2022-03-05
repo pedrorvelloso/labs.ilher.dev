@@ -10,10 +10,10 @@ export const Drawer: React.FC<DrawerProps> = ({ children, isOpen }) => {
     const body = document.getElementsByTagName('body')[0]
 
     if (isOpen) {
-      body.style.overflowY = 'hidden'
+      body.classList.add('fixed', 'overflow-hidden', 'right-0', 'left-0')
       window.scrollTo(0, 0)
     } else {
-      body.style.overflowY = ''
+      body.classList.remove('fixed', 'overflow-hidden', 'right-0', 'left-0')
     }
   }, [isOpen])
 
