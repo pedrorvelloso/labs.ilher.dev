@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useTransition } from 'remix'
 
-import { Drawer } from './drawer'
-import { Icon } from './icon'
-import { NavAnchor } from './nav-anchor'
+import { Drawer } from '../components/drawer'
+import { Icon } from '../components/icon'
+import { NavAnchor } from '../components/nav-anchor'
 
 const ICON_SIZE = 20
 

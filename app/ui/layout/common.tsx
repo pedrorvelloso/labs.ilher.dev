@@ -1,4 +1,4 @@
-import { Header } from '../components/header'
+import { Header } from '../compositions/header'
 
 export const CommonLayout: React.FC = ({ children }) => {
   return (

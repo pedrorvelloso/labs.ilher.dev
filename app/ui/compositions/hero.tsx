@@ -4,8 +4,8 @@ import { Text } from '../components/typograph'
 
 export const Hero = () => {
   return (
-    <Grid className="max-w-5xl px-9 md:px-16 mx-auto pt-16 lg:pt-0 lg:mb-0 lg:min-h-index-hero gap-y-5 md:gap-y-10">
-      <div className="col-span-full md:col-start-5 md:col-span-4 lg:col-start-8 lg:col-span-5 flex justify-center lg:justify-end items-center">
+    <Grid className="pt-16 lg:pt-0 lg:mb-0 lg:min-h-index-hero gap-y-5 md:gap-y-10">
+      <div className="col-span-full md:col-start-5 md:col-span-4 lg:col-start-8 lg:col-span-5 flex justify-center md:justify-end items-center">
         <img
           src="/images/avatar.png"
           alt="Pedro Reis"
