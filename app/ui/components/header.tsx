@@ -73,7 +73,7 @@ export const Header = () => {
   return (
     <>
       <div className="h-[87px] border-b border-neutral-800 z-50 relative bg-neutral-900">
-        <nav className="max-w-5xl mx-auto px-9 flex items-center justify-between h-full">
+        <nav className="max-w-5xl mx-auto px-6 flex items-center justify-between h-full">
           <img
             src="/images/Icon.svg"
             alt="LABS logo"

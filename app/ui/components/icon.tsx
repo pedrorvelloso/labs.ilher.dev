@@ -1,5 +1,16 @@
 import { IconBaseProps } from 'react-icons'
-import { FaTwitter, FaGithub, FaStar, FaBars, FaTimes } from 'react-icons/fa'
+
+import {
+  FaTwitter,
+  FaGithub,
+  FaStar,
+  FaBars,
+  FaTimes,
+  FaNodeJs,
+  FaReact,
+} from 'react-icons/fa'
+import { GoLocation } from 'react-icons/go'
+import { SiTypescript } from 'react-icons/si'
 
 const iconMap = {
   twitter: FaTwitter,
@@ -7,6 +18,10 @@ const iconMap = {
   stargazer: FaStar,
   hamburger: FaBars,
   close: FaTimes,
+  pin: GoLocation,
+  node: FaNodeJs,
+  react: FaReact,
+  typescript: SiTypescript,
 }
 
 interface IconProps extends IconBaseProps {
