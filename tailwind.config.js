@@ -5,8 +5,11 @@ module.exports = {
   content: ['./app/**/*.{js,ts,tsx}'],
   theme: {
     extend: {
+      colors: {
+        'south-system': '#ff5100',
+      },
       fontFamily: {
-        sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
       },
       minHeight: {
         'index-hero': 'calc(100vh - 87px)',
@@ -19,5 +22,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 }
