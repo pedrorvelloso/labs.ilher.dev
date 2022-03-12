@@ -1,11 +1,11 @@
-import type { Post } from '~/generated/graphql'
+import type { GetPostsQuery } from '~/generated/graphql'
 
 import { Article } from '../components/article'
 import { Grid } from '../components/grid'
 import { Heading } from '../components/typograph'
 
 interface ArticlesProps {
-  articles: Array<Post>
+  articles: GetPostsQuery['posts']
   title: string
   inline?: boolean
 }

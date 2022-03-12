@@ -1,6 +1,11 @@
 import { useLoaderData } from 'remix'
+import { getHeaders } from '~/utils/headers'
+
 import { Articles } from '~/ui/compositions/articles'
+
 import { LoaderIndexData, loader as indexLoader } from './index'
+
+export const headers = getHeaders
 
 export const loader = indexLoader
 
