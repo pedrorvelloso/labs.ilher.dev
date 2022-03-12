@@ -2,8 +2,9 @@ import type { LoaderFunction } from 'remix'
 import { useLoaderData, json } from 'remix'
 
 import type { Post } from '~/generated/graphql'
-
 import { getPosts } from '~/server/graphcms.server'
+
+import { Swr } from '~/utils/headers'
 
 import { Articles } from '~/ui/compositions/articles'
 import { Hero } from '~/ui/compositions/hero'
@@ -16,9 +17,24 @@ export type LoaderIndexData = {
 export const loader: LoaderFunction = async () => {
   const { data } = await getPosts()
 
-  if (data.errors) return json<LoaderIndexData>({ posts: [] })
+  if (data.errors)
+    return json<LoaderIndexData>(
+      { posts: [] },
+      {
+        headers: {
+          ...Swr,
+        },
+      },
+    )
 
-  return json<LoaderIndexData>({ posts: data.posts })
+  return json<LoaderIndexData>(
+    { posts: data.posts },
+    {
+      headers: {
+        ...Swr,
+      },
+    },
+  )
 }
 
 const Index = () => {

@@ -6,7 +6,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn build:css && remix build",
-    "prebuild": "yarn clear && yarn codegen",
+    "prebuild": "yarn clear",
     "dev": "pm2-dev ./scripts/pm2.config.js",
     "build:css": "postcss styles --base styles --dir app/styles --env production",
     "check:types": "tsc -b",
