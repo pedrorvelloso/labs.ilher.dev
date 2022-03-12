@@ -1,8 +1,8 @@
 import type { LoaderFunction } from 'remix'
 import { useLoaderData, json } from 'remix'
 
-import type { GetPostsQuery } from '~/generated/graphql'
-import { getPosts } from '~/server/graphcms.server'
+import type { GetArticlesQuery } from '~/generated/graphql'
+import { getArticles } from '~/server/graphcms.server'
 
 import { getHeaders, Swr } from '~/utils/headers'
 
@@ -11,13 +11,13 @@ import { Hero } from '~/ui/compositions/hero'
 import { Stack } from '~/ui/compositions/stack'
 
 export type LoaderIndexData = {
-  posts: GetPostsQuery['posts']
+  articles: GetArticlesQuery['articles']
 }
 
 export const headers = getHeaders
 
 export const loader: LoaderFunction = async () => {
-  const { data } = await getPosts()
+  const { data } = await getArticles()
 
   const headers = {
     ...Swr,
@@ -25,14 +25,14 @@ export const loader: LoaderFunction = async () => {
 
   if (data.errors)
     return json<LoaderIndexData>(
-      { posts: [] },
+      { articles: [] },
       {
         headers,
       },
     )
 
   return json<LoaderIndexData>(
-    { posts: data.posts },
+    { articles: data.articles },
     {
       headers,
     },
@@ -46,7 +46,7 @@ const Index = () => {
     <div>
       <Hero />
       <Stack />
-      <Articles title="Latest Articles" articles={data.posts} />
+      <Articles title="Latest Articles" articles={data.articles} />
     </div>
   )
 }

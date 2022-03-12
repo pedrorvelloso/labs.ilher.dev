@@ -30,7 +30,7 @@ const Menu = ({
       </li>
       <li>
         <NavAnchor
-          href="/blog"
+          href="/articles"
           color="green"
           sideAnimation={onDrawer}
           className={onDrawer ? classNameDrawer : ''}

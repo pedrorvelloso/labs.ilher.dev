@@ -1,5 +1,7 @@
 import clsx from 'clsx'
 
+import { formatDate } from '~/utils/dates'
+
 import { Anchor } from './anchor'
 import { Heading, Text } from './typograph'
 
@@ -15,14 +17,14 @@ interface ArticleProps {
 export const Article = ({
   title,
   excerpt,
-  // slug,
+  slug,
   tag,
   publishedAt,
   inline,
 }: ArticleProps) => {
   return (
     <Anchor
-      href="/"
+      href={`/articles/${slug}`}
       className={clsx(
         'group transition-all relative select-none before:bg-neutral-300 before:opacity-0 hover:before:opacity-100 before:block before:absolute before:-z-10 before:transition-all before:-inset-[15px] before:rounded-lg',
         {
@@ -42,7 +44,7 @@ export const Article = ({
           overrideColor
           className="text-neutral-400 group-hover:text-neutral-700"
         >
-          {publishedAt || 'DRAFT'}
+          {publishedAt ? formatDate(publishedAt) : 'DRAFT'}
         </Text>
       </div>
       <Heading

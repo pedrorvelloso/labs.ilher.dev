@@ -14,7 +14,7 @@ const Blog = () => {
 
   return (
     <div className="my-28">
-      <Articles title="Articles" articles={data.posts} inline />
+      <Articles title="Articles" articles={data.articles} inline />
     </div>
   )
 }
