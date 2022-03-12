@@ -1,32 +1,39 @@
 {
-  "name": "remix-app-template",
+  "name": "labs-ilher-dev",
   "private": true,
   "description": "",
   "license": "",
   "sideEffects": false,
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn build:css && remix build",
-    "prebuild": "yarn clear",
+    "prebuild": "yarn clear && yarn codegen",
     "dev": "pm2-dev ./scripts/pm2.config.js",
     "build:css": "postcss styles --base styles --dir app/styles --env production",
     "check:types": "tsc -b",
     "check:lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext js,jsx,ts,tsx .",
     "validate": "./scripts/check-app",
-    "clear": "rimraf public/build \"./app/styles/**/*.css\"",
-    "postinstall": "remix setup node"
+    "clear": "rimraf public/build \"./app/styles/**/*.css\" \"./app/generated/graphql.ts\"",
+    "postinstall": "remix setup node",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@remix-run/react": "^1.2.3",
     "@remix-run/vercel": "^1.2.3",
+    "apollo-server-errors": "^3.3.1",
     "clsx": "^1.1.1",
     "dotenv": "^16.0.0",
     "framer-motion": "^6.2.8",
+    "graphql": "^16.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "remix": "^1.2.3"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.6.2",
+    "@graphql-codegen/introspection": "^2.1.1",
+    "@graphql-codegen/typescript": "2.4.7",
+    "@graphql-codegen/typescript-resolvers": "2.5.4",
     "@remix-run/dev": "^1.2.3",
     "@remix-run/eslint-config": "^1.2.3",
     "@remix-run/node": "^1.2.3",

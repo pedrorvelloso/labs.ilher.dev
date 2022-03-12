@@ -1,8 +1,20 @@
+import type { Post } from '~/generated/graphql'
+
 import { Article } from '../components/article'
 import { Grid } from '../components/grid'
 import { Heading } from '../components/typograph'
 
-export const Articles = () => {
+interface ArticlesProps {
+  articles: Array<Post>
+  title: string
+  inline?: boolean
+}
+
+export const Articles = ({
+  title,
+  articles,
+  inline = false,
+}: ArticlesProps) => {
   return (
     <>
       <Heading
@@ -10,16 +22,20 @@ export const Articles = () => {
         as="h2"
         className="mb-6 col-span-full max-w-5xl mx-auto px-9 md:px-16 text-neutral-300"
       >
-        Articles
+        {title}
       </Heading>
       <Grid as="section" className="text-neutral-300 mb-28 gap-y-10">
-        <Article
-          title="Blog? Remix? How dit it start?"
-          excerpt="A brief history about my website and blog."
-          publishedAt="2022-03-10"
-          slug="blog-remix-how-did-it-start"
-          tag="remix"
-        />
+        {articles.map((article) => (
+          <Article
+            key={article.slug}
+            title={article.title}
+            excerpt={article.excerpt}
+            publishedAt={article.publishedAt}
+            slug={article.slug}
+            tag={article.tags[0].name}
+            inline={inline}
+          />
+        ))}
       </Grid>
     </>
   )

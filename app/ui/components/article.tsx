@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 import { Anchor } from './anchor'
 import { Heading, Text } from './typograph'
 
@@ -7,6 +9,7 @@ interface ArticleProps {
   tag: string
   excerpt: string
   publishedAt: string | null
+  inline?: boolean
 }
 
 export const Article = ({
@@ -15,16 +18,23 @@ export const Article = ({
   // slug,
   tag,
   publishedAt,
+  inline,
 }: ArticleProps) => {
   return (
     <Anchor
       href="/"
-      className="col-span-full lg:col-span-4 group transition-all relative select-none before:bg-neutral-300 before:opacity-0 hover:before:opacity-100 before:block before:absolute before:-z-10 before:transition-all before:-inset-[15px] before:rounded-lg"
+      className={clsx(
+        'group transition-all relative select-none before:bg-neutral-300 before:opacity-0 hover:before:opacity-100 before:block before:absolute before:-z-10 before:transition-all before:-inset-[15px] before:rounded-lg',
+        {
+          'col-span-full lg:col-span-4': !inline,
+          'col-span-full': inline,
+        },
+      )}
     >
       <div className="flex items-center gap-x-4 mb-2 text-xs">
         <Text
           overrideColor
-          className="bg-green-900 w-fit px-4 py-1 uppercase rounded-lg text-green-300 flex items-center"
+          className="bg-neutral-700 w-fit px-4 py-1 uppercase rounded-lg text-neutral-300 flex items-center"
         >
           {tag}
         </Text>
