@@ -3,7 +3,7 @@ import { json, useLoaderData } from 'remix'
 
 import type { Tag } from '~/generated/graphql'
 import { getArticle } from '~/server/graphcms.server'
-import { Swr } from '~/utils/headers'
+import { getHeaders, Swr } from '~/utils/headers'
 
 import proseCss from '~/styles/prose.css'
 import hljsCss from '~/styles/hljs.css'
@@ -25,6 +25,8 @@ type ArticleLoaderData = {
     slug: string
   }
 }
+
+export const headers = getHeaders
 
 export const loader: LoaderFunction = async ({ params }) => {
   const { slug, locale } = params
