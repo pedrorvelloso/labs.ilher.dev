@@ -1,17 +1,21 @@
-pre code {
+pre {
   display: block;
   overflow-x: auto;
   padding: 1em;
 }
+
+.prose pre::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #aaaaaa;
+}
 /*
 Style with support for rainbow parens
 */
-
-.hljs {
-  background: #474949;
-  color: #d1d9e1;
-}
-
 
 .hljs-comment,
 .hljs-quote {

@@ -66,7 +66,7 @@ export const getArticle = async (
 
   if (errors) throw new Error('error fetching article')
 
-  const contentHtml = buildHtml(data.article.content)
+  const contentHtml = await buildHtml(data.article.content)
 
   return { ...data.article, content: contentHtml }
 }
