@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { formatDate } from '~/utils/dates'
 
 import { Anchor } from './anchor'
+import { Tag } from './tag'
 import { Heading, Text } from './typograph'
 
 interface ArticleProps {
@@ -34,12 +35,7 @@ export const Article = ({
       )}
     >
       <div className="flex items-center gap-x-4 mb-2 text-xs">
-        <Text
-          overrideColor
-          className="bg-neutral-700 w-fit px-4 py-1 uppercase rounded-lg text-neutral-300 flex items-center"
-        >
-          {tag}
-        </Text>
+        <Tag>{tag}</Tag>
         <Text
           overrideColor
           className="text-neutral-400 group-hover:text-neutral-700"

@@ -25,7 +25,7 @@ export const Text = <Component extends React.ElementType>({
   return (
     <Tag
       className={clsx(className, {
-        'text-grey-300': !overrideColor,
+        'text-neutral-300': !overrideColor,
       })}
       {...otherProps}
     >
