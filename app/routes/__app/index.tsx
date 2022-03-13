@@ -10,43 +10,41 @@ import { Articles } from '~/ui/compositions/articles'
 import { Hero } from '~/ui/compositions/hero'
 import { Stack } from '~/ui/compositions/stack'
 
-export type LoaderIndexData = {
-  articles: GetArticlesQuery['articles']
+type IndexLoaderData = {
+  articles: GetArticlesQuery['articles'] | null
 }
 
 export const headers = getHeaders
 
 export const loader: LoaderFunction = async () => {
-  const { data } = await getArticles()
+  const articles = await getArticles()
 
   const headers = {
     ...Swr,
   }
 
-  if (data.errors)
-    return json<LoaderIndexData>(
-      { articles: [] },
+  try {
+    return json<IndexLoaderData>(
+      { articles },
       {
         headers,
       },
     )
-
-  return json<LoaderIndexData>(
-    { articles: data.articles },
-    {
-      headers,
-    },
-  )
+  } catch {
+    return json<IndexLoaderData>({ articles: null }, { headers })
+  }
 }
 
 const Index = () => {
-  const data = useLoaderData<LoaderIndexData>()
+  const data = useLoaderData<IndexLoaderData>()
 
   return (
     <div>
       <Hero />
       <Stack />
-      <Articles title="Latest Articles" articles={data.articles} />
+      {data.articles && (
+        <Articles title="Latest Articles" articles={data.articles} />
+      )}
     </div>
   )
 }

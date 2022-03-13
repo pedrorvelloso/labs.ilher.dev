@@ -3,7 +3,7 @@ import { PolymorphicComponentProps } from '~/types/polymorphic'
 
 interface GridOwnProps {
   className?: string
-  children: React.ReactNode
+  children?: React.ReactNode
   featured?: boolean
 }
 
@@ -21,6 +21,7 @@ export const Grid = <
   as,
   className,
   featured = false,
+  ...otherProps
 }: GridProps<Component>) => {
   const Tag = as || defaultElemet
 
@@ -34,6 +35,7 @@ export const Grid = <
         },
         className,
       )}
+      {...otherProps}
     >
       {children}
     </Tag>

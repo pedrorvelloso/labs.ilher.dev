@@ -24,7 +24,7 @@ export const Article = ({
 }: ArticleProps) => {
   return (
     <Anchor
-      href={`/articles/${slug}`}
+      href={`/articles/en/${slug}`}
       className={clsx(
         'group transition-all relative select-none before:bg-neutral-300 before:opacity-0 hover:before:opacity-100 before:block before:absolute before:-z-10 before:transition-all before:-inset-[15px] before:rounded-lg',
         {

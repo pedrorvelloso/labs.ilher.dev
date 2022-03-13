@@ -1,4 +1,7 @@
+import type { GetArticlesQuery, GetArticleQuery } from '~/generated/graphql'
 import { fetchFromGraphQL, gql } from '~/utils/graphql'
+
+import { buildHtml } from './markdown.server'
 
 const GetArticles = gql`
   query GetArticles($first: Int, $stage: Stage!) {
@@ -18,13 +21,17 @@ const GetArticles = gql`
 export const getArticles = async (
   first = 3,
   stage: 'DRAFT' | 'PUBLISHED' = 'PUBLISHED',
-) => {
+): Promise<GetArticlesQuery['articles']> => {
   const result = await fetchFromGraphQL(GetArticles, {
     first,
     stage,
   })
 
-  return result
+  const { data, errors } = result
+
+  if (errors) throw new Error('error fetching artitcles')
+
+  return data.articles
 }
 
 const GetArticle = gql`
@@ -34,6 +41,7 @@ const GetArticle = gql`
       publishedAt
       slug
       content
+      excerpt
       tags {
         name
       }
@@ -44,12 +52,21 @@ const GetArticle = gql`
   }
 `
 
-export const getArticle = async (slug: string, locale?: string | null) => {
+export const getArticle = async (
+  slug: string,
+  locale?: string | null,
+): Promise<GetArticleQuery['article']> => {
   const language = locale || 'en'
   const result = await fetchFromGraphQL(GetArticle, {
     slug,
     locale: [language],
   })
 
-  return result
+  const { data, errors } = result
+
+  if (errors) throw new Error('error fetching article')
+
+  const contentHtml = buildHtml(data.article.content)
+
+  return { ...data.article, content: contentHtml }
 }
