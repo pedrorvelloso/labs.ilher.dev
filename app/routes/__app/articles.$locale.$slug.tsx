@@ -2,12 +2,13 @@ import type { LoaderFunction, LinksFunction } from 'remix'
 import { json, useLoaderData } from 'remix'
 
 import type { Tag } from '~/generated/graphql'
-
 import { getArticle } from '~/server/graphcms.server'
-import { Grid } from '~/ui/components/grid'
+import { Swr } from '~/utils/headers'
 
 import proseCss from '~/styles/prose.css'
 import hljsCss from '~/styles/hljs.css'
+
+import { Grid } from '~/ui/components/grid'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: proseCss },
@@ -32,7 +33,14 @@ export const loader: LoaderFunction = async ({ params }) => {
 
   if (!article) throw json({ message: 'not found' }, { status: 404 })
 
-  return json<ArticleLoaderData>({ article })
+  return json<ArticleLoaderData>(
+    { article },
+    {
+      headers: {
+        ...Swr,
+      },
+    },
+  )
 }
 
 const ArticlePage = () => {
