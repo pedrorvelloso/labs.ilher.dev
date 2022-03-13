@@ -1,4 +1,8 @@
-import type { GetArticlesQuery, GetArticleQuery } from '~/generated/graphql'
+import type {
+  GetArticlesQuery,
+  GetArticleQuery,
+  GetArticleTitleQuery,
+} from '~/generated/graphql'
 import { fetchFromGraphQL, gql } from '~/utils/graphql'
 
 import { buildHtml } from './markdown.server'
@@ -69,4 +73,29 @@ export const getArticle = async (
   const contentHtml = await buildHtml(data.article.content)
 
   return { ...data.article, content: contentHtml }
+}
+
+const GetArticleTitle = gql`
+  query GetArticleTitle($slug: String!, $locale: [Locale!]!) {
+    article(locales: $locale, where: { slug: $slug }) {
+      title
+    }
+  }
+`
+
+export const getArticleTitle = async (
+  slug: string,
+  locale?: string | null,
+): Promise<GetArticleTitleQuery['article']> => {
+  const language = locale || 'en'
+  const result = await fetchFromGraphQL(GetArticleTitle, {
+    slug,
+    locale: [language],
+  })
+
+  const { data, errors } = result
+
+  if (errors) throw new Error('error fetching article')
+
+  return data.article
 }

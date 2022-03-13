@@ -5,18 +5,45 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  json,
 } from 'remix'
-import type { MetaFunction, LinksFunction } from 'remix'
+import type { MetaFunction, LinksFunction, LoaderFunction } from 'remix'
+
+import { getDomainUrl, getUrl } from './utils/misc'
+import { getSeo } from './utils/seo'
 
 import tailwindCss from '~/styles/tailwind.css'
 
-export const meta: MetaFunction = () => {
-  return { title: 'Pedro Reis', description: 'Pedro Reis personal website' }
+export type RootLoaderData = {
+  url: {
+    origin: string
+    path: string
+  }
+}
+
+export const meta: MetaFunction = ({ data }) => {
+  const { url } = data as RootLoaderData
+
+  return {
+    ...getSeo({
+      keywords: 'React, Remix, GraphCMS, Blog',
+      url: getUrl(url),
+    }),
+  }
 }
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: tailwindCss },
 ]
+
+export const loader: LoaderFunction = ({ request }) => {
+  return json<RootLoaderData>({
+    url: {
+      origin: getDomainUrl(request),
+      path: new URL(request.url).pathname,
+    },
+  })
+}
 
 export default function App() {
   return (
