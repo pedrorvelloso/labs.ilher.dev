@@ -9,7 +9,7 @@ import { formatDate } from '~/utils/dates'
 import { locales } from '~/utils/locale'
 
 import proseCss from '~/styles/prose.css'
-import hljsCss from '~/styles/hljs.css'
+import prismCss from '~/styles/prism.css'
 
 import { Grid } from '~/ui/components/grid'
 import { Heading, Text } from '~/ui/components/typograph'
@@ -18,7 +18,7 @@ import { Anchor } from '~/ui/components/anchor'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: proseCss },
-  { rel: 'stylesheet', href: hljsCss },
+  { rel: 'stylesheet', href: prismCss },
 ]
 
 type ArticleLoaderData = {

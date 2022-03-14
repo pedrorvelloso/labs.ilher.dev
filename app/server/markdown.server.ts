@@ -1,17 +1,26 @@
 import MarkdownIt from 'markdown-it'
 
 export const buildHtml = async (content: string) => {
-  const [{ lowlight }, { toHtml }] = await Promise.all([
-    await import('lowlight'),
+  const [{ refractor }, { toHtml }] = await Promise.all([
+    await import('refractor'),
     await import('hast-util-to-html'),
   ])
 
+  const [{ default: tsx }, { default: jsx }] = await Promise.all([
+    await import('refractor/lang/tsx.js'),
+    await import('refractor/lang/jsx.js'),
+  ])
+
+  refractor.register(tsx)
+  refractor.register(jsx)
+
+  console.log(refractor.registered(''))
+
   const md = new MarkdownIt({
     highlight: function (str, lang) {
-      if (lang && lowlight.registered(lang)) {
+      if (lang && refractor.registered(lang)) {
         try {
-          const hast = lowlight.highlight(lang, str)
-
+          const hast = refractor.highlight(str, lang)
           return toHtml(hast)
         } catch (__) {}
       }

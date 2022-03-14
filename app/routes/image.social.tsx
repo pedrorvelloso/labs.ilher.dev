@@ -15,6 +15,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const type = requestUrl.searchParams.get('type')
   const from = requestUrl.searchParams.get('from')
+  const locale = requestUrl.searchParams.get('locale') || 'en'
 
   let text = imageText.home
 
@@ -22,7 +23,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     text = imageText[from as keyof typeof imageText] ?? imageText.home
 
   if (type === 'article' && from) {
-    const result = await getArticleTitle(from)
+    const result = await getArticleTitle(from, locale)
 
     text = result ? result.title : imageText.home
   }

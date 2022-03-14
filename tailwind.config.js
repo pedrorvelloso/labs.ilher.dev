@@ -10,6 +10,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
       },
       minHeight: {
         'index-hero': 'calc(100vh - 87px)',
