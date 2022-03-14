@@ -14,8 +14,6 @@ export const buildHtml = async (content: string) => {
   refractor.register(tsx)
   refractor.register(jsx)
 
-  console.log(refractor.registered(''))
-
   const md = new MarkdownIt({
     highlight: function (str, lang) {
       if (lang && refractor.registered(lang)) {
@@ -27,7 +25,7 @@ export const buildHtml = async (content: string) => {
 
       return ''
     },
-  })
+  }).use(require('markdown-it-footnote'))
 
   return md.render(content)
 }

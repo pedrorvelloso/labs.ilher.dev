@@ -5,6 +5,7 @@ interface TextOwnProps {
   className?: string
   children?: React.ReactNode
   overrideColor?: boolean
+  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl'
 }
 
 type TextProps<Component extends React.ElementType> = PolymorphicComponentProps<
@@ -18,6 +19,7 @@ export const Text = <Component extends React.ElementType>({
   className,
   children,
   overrideColor = false,
+  size = 'lg',
   ...otherProps
 }: TextProps<Component>) => {
   const Tag = as || 'p'
@@ -26,6 +28,11 @@ export const Text = <Component extends React.ElementType>({
     <Tag
       className={clsx(className, {
         'text-neutral-300': !overrideColor,
+        'text-lg': size === 'lg',
+        'text-xs': size === 'xs',
+        'text-sm': size === 'lg',
+        'text-base': size === 'base',
+        'text-xl': size === 'xl',
       })}
       {...otherProps}
     >
@@ -34,7 +41,7 @@ export const Text = <Component extends React.ElementType>({
   )
 }
 
-interface HeadingOwnProps extends Omit<TextOwnProps, 'overrideColor'> {
+interface HeadingOwnProps extends Omit<TextOwnProps, 'overrideColor' | 'size'> {
   size?: 'title' | 'subtitle'
 }
 

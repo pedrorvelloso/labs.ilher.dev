@@ -4,7 +4,7 @@ import { formatDate } from '~/utils/dates'
 
 import { Anchor } from './anchor'
 import { Tag } from './tag'
-import { Heading, Text } from './typograph'
+import { Text } from './typograph'
 
 interface ArticleProps {
   slug: string
@@ -34,24 +34,26 @@ export const Article = ({
         },
       )}
     >
-      <div className="flex items-center gap-x-4 mb-2 text-xs">
+      <div className="flex items-center gap-x-4 mb-2">
         <Tag>{tag}</Tag>
         <Text
           overrideColor
+          size="xs"
           className="text-neutral-400 group-hover:text-neutral-700"
         >
           {publishedAt ? formatDate(publishedAt) : 'DRAFT'}
         </Text>
       </div>
-      <Heading
-        size="subtitle"
+      <Text
+        size="xl"
         as="h2"
-        className="group-hover:text-neutral-800 mb-2"
+        className="group-hover:text-neutral-800 mb-2 text-neutral-200"
       >
         {title}
-      </Heading>
+      </Text>
       <Text
         overrideColor
+        size="base"
         className="text-neutral-400 group-hover:text-neutral-700 text-sm"
       >
         {excerpt}

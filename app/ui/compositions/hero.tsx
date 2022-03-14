@@ -24,8 +24,8 @@ export const Hero = () => {
           <Icon name="pin" className="text-red-500 animate-bounce" /> Brasília,
           Brazil
         </Text>
-        <Heading>Hello</Heading>
-        <Heading>
+        <Heading className="text-neutral-200">Hello</Heading>
+        <Heading className="text-neutral-200">
           I&apos;m <span className="text-indigo-400">Pedro Reis</span>
         </Heading>
         <Text className="my-4 lg:my-6">

@@ -21,6 +21,23 @@ module.exports = {
         'stack-sm':
           'linear-gradient(90deg, rgba(69, 62, 193, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);',
       },
+      typography: (theme) => {
+        return {
+          DEFAULT: {
+            css: [
+              {
+                '> *': {
+                  gridColumn: '1 / -1',
+
+                  [`@media (min-width: ${theme('screens.lg')})`]: {
+                    gridColumn: '3 / span 8',
+                  },
+                },
+              },
+            ],
+          },
+        }
+      },
     },
   },
   plugins: [

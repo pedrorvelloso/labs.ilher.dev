@@ -9,7 +9,7 @@ import { buildHtml } from './markdown.server'
 
 const GetArticles = gql`
   query GetArticles($first: Int, $stage: Stage!) {
-    articles(first: $first, stage: $stage) {
+    articles(first: $first, stage: $stage, orderBy: publishedAt_DESC) {
       title
       excerpt
       slug

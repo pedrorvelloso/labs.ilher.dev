@@ -58,35 +58,37 @@ const ArticlePage = () => {
   return (
     <div className="my-28">
       <Grid as="section" className="mb-5">
-        <Heading className="text-neutral-300 col-span-full">
-          {article.title}
-        </Heading>
-        <Text className="col-span-full text-neutral-400" overrideColor>
-          {article.publishedAt ? formatDate(article.publishedAt) : 'DRAFT'}
-        </Text>
-        <div className="col-span-full flex items-center gap-2 mt-3">
-          {article.localizations.map(({ locale }) => (
-            <Anchor key={locale} href={`/articles/${locale}/${article.slug}`}>
-              <Tag>Read in {locales[locale]}</Tag>
-            </Anchor>
-          ))}
+        <div className="col-span-full lg:col-span-8 lg:col-start-3">
+          <Heading className="text-neutral-200">{article.title}</Heading>
+          <Text className="text-neutral-400" size="base" overrideColor>
+            {article.publishedAt ? formatDate(article.publishedAt) : 'DRAFT'}
+          </Text>
+          <div className="flex items-center gap-2 mt-3">
+            {article.localizations.map(({ locale }) => (
+              <Anchor key={locale} href={`/articles/${locale}/${article.slug}`}>
+                <Tag>Read in {locales[locale]}</Tag>
+              </Anchor>
+            ))}
+          </div>
         </div>
       </Grid>
       <Grid
         as="article"
-        className="mx-auto prose prose-invert prose-h2:my-4 prose-h2:text-neutral-300 prose-p:text-neutral-300"
+        className="mx-auto prose prose-invert prose-lg prose-h2:my-4 prose-h2:text-neutral-300 prose-p:text-neutral-300 lg:prose-pre:col-span-10 lg:prose-pre:col-start-2"
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
       <Grid className="mt-28">
-        <Text overrideColor className="text-neutral-400 text-sm mb-2">
-          Tags:
-        </Text>
-        <div className="col-span-full flex gap-2">
-          {article.tags.map((tag) => (
-            <Anchor key={tag.name} href="/">
-              <Tag>{tag.name}</Tag>
-            </Anchor>
-          ))}
+        <div className="col-span-full lg:col-span-8 lg:col-start-3">
+          <Text overrideColor className="text-neutral-400 text-sm mb-2">
+            Tags:
+          </Text>
+          <div className="flex gap-2">
+            {article.tags.map((tag) => (
+              <Anchor key={tag.name} href="/">
+                <Tag>{tag.name}</Tag>
+              </Anchor>
+            ))}
+          </div>
         </div>
       </Grid>
     </div>
