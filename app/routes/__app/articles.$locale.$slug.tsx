@@ -8,7 +8,6 @@ import { getHeaders, Swr } from '~/utils/headers'
 import { formatDate } from '~/utils/dates'
 import { locales } from '~/utils/locale'
 
-import proseCss from '~/styles/prose.css'
 import prismCss from '~/styles/prism.css'
 
 import { Grid } from '~/ui/components/grid'
@@ -17,7 +16,6 @@ import { Tag } from '~/ui/components/tag'
 import { Anchor } from '~/ui/components/anchor'
 
 export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: proseCss },
   { rel: 'stylesheet', href: prismCss },
 ]
 
