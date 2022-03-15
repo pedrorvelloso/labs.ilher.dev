@@ -38,7 +38,7 @@ const Index = () => {
   const data = useLoaderData<IndexLoaderData>()
 
   return (
-    <div className="my-28">
+    <div className="my-14">
       <Intro />
       {data.articles && (
         <Articles

@@ -54,10 +54,12 @@ const ArticlePage = () => {
   const { article } = useLoaderData<ArticleLoaderData>()
 
   return (
-    <div className="my-28">
+    <div className="my-14">
       <Grid as="section" className="mb-5">
-        <div className="col-span-full lg:col-span-8 lg:col-start-3">
-          <Heading className="text-neutral-200">{article.title}</Heading>
+        <div className="col-span-full lg:col-span-10 lg:col-start-2">
+          <Heading className="text-neutral-200 font-bold">
+            {article.title}
+          </Heading>
           <Text className="text-neutral-400" size="base" overrideColor>
             {article.publishedAt ? formatDate(article.publishedAt) : 'DRAFT'}
           </Text>
@@ -72,11 +74,11 @@ const ArticlePage = () => {
       </Grid>
       <Grid
         as="article"
-        className="mx-auto prose prose-invert prose-h2:my-4 prose-h2:text-neutral-300 prose-p:text-neutral-300 lg:prose-pre:col-span-10 lg:prose-pre:col-start-2"
+        className="mx-auto prose prose-invert prose-h2:my-4 prose-h2:text-neutral-300 prose-p:text-neutral-300 lg:prose-pre:col-span-full"
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
       <Grid className="mt-28">
-        <div className="col-span-full lg:col-span-8 lg:col-start-3">
+        <div className="col-span-full lg:col-span-10 lg:col-start-2">
           <Text overrideColor className="text-neutral-400 text-sm mb-2">
             Tags:
           </Text>

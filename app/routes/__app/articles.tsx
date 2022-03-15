@@ -32,12 +32,12 @@ const Blog = () => {
   const data = useLoaderData<ArticlesLoaderData>()
 
   return (
-    <div className="my-28">
+    <div className="my-14">
       <Articles
         title="Articles"
         articles={data.articles}
         inline
-        className="mb-28"
+        className="mb-14"
       />
     </div>
   )

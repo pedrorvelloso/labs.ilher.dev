@@ -24,7 +24,7 @@ export const Articles = ({
       <Heading
         size="subtitle"
         as="h2"
-        className="mb-6 col-span-full max-w-5xl mx-auto px-9 md:px-16 text-neutral-200"
+        className="mb-6 max-w-3xl mx-auto px-8 text-neutral-200 font-bold"
       >
         {title}
       </Heading>
