@@ -33,7 +33,12 @@ const Blog = () => {
 
   return (
     <div className="my-28">
-      <Articles title="Articles" articles={data.articles} inline />
+      <Articles
+        title="Articles"
+        articles={data.articles}
+        inline
+        className="mb-28"
+      />
     </div>
   )
 }

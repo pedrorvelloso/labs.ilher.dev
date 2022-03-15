@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 import type { GetArticlesQuery } from '~/generated/graphql'
 
 import { Article } from '../components/article'
@@ -8,12 +10,14 @@ interface ArticlesProps {
   articles: GetArticlesQuery['articles']
   title: string
   inline?: boolean
+  className?: string
 }
 
 export const Articles = ({
   title,
   articles,
   inline = false,
+  className,
 }: ArticlesProps) => {
   return (
     <>
@@ -24,7 +28,10 @@ export const Articles = ({
       >
         {title}
       </Heading>
-      <Grid as="section" className="text-neutral-300 mb-28 gap-y-10">
+      <Grid
+        as="section"
+        className={clsx('text-neutral-300 gap-y-10', className)}
+      >
         {articles.map((article) => (
           <Article
             key={article.slug}

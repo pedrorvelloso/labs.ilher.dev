@@ -74,7 +74,7 @@ export const Header = () => {
     <>
       <div className="h-[87px] border-b border-neutral-800 z-50 relative bg-neutral-900">
         <nav className="max-w-5xl mx-auto px-6 flex items-center justify-between h-full">
-          <img
+          {/* <img
             src="/images/Icon.svg"
             alt="LABS logo"
             className="block lg:hidden"
@@ -83,7 +83,7 @@ export const Header = () => {
             src="/images/logo.png"
             alt="LABS logo"
             className="lg:block hidden"
-          />
+          /> */}
           <Menu className="hidden lg:flex text-neutral-400 h-full" />
           <ul className="hidden lg:flex text-neutral-400 gap-5">
             <li>

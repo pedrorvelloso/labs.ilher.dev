@@ -28,7 +28,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     text = result ? result.title : imageText.home
   }
 
-  const url = buildUrl('labs-social-image', {
+  const url = buildUrl('social-image-labs', {
     transformations: {
       format: 'png',
       chaining: [
@@ -39,7 +39,7 @@ export const loader: LoaderFunction = async ({ request }) => {
             height: 250,
           },
           gravity: 'north_west',
-          overlay: `text:Nunito_86_bold:${doubleEncode(text)},co_rgb:D1D5DB`,
+          overlay: `text:ibm.ttf_86:${doubleEncode(text)},co_rgb:D1D5DB`,
           position: {
             x: 95,
             y: 62,
@@ -48,6 +48,8 @@ export const loader: LoaderFunction = async ({ request }) => {
       ],
     },
   })
+
+  console.log(url)
 
   const socialImageCloudinary = await fetch(url)
   const imageBuffer = await socialImageCloudinary.arrayBuffer()

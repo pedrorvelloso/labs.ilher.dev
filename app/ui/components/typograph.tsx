@@ -19,7 +19,7 @@ export const Text = <Component extends React.ElementType>({
   className,
   children,
   overrideColor = false,
-  size = 'lg',
+  size = 'base',
   ...otherProps
 }: TextProps<Component>) => {
   const Tag = as || 'p'

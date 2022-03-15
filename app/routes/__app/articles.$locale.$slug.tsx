@@ -74,7 +74,7 @@ const ArticlePage = () => {
       </Grid>
       <Grid
         as="article"
-        className="mx-auto prose prose-invert prose-lg prose-h2:my-4 prose-h2:text-neutral-300 prose-p:text-neutral-300 lg:prose-pre:col-span-10 lg:prose-pre:col-start-2"
+        className="mx-auto prose prose-invert prose-h2:my-4 prose-h2:text-neutral-300 prose-p:text-neutral-300 lg:prose-pre:col-span-10 lg:prose-pre:col-start-2"
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
       <Grid className="mt-28">

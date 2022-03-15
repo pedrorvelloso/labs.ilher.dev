@@ -7,8 +7,7 @@ import { getArticles } from '~/server/graphcms.server'
 import { getHeaders, Swr } from '~/utils/headers'
 
 import { Articles } from '~/ui/compositions/articles'
-import { Hero } from '~/ui/compositions/hero'
-import { Stack } from '~/ui/compositions/stack'
+import { Intro } from '~/ui/compositions/intro'
 
 type IndexLoaderData = {
   articles: GetArticlesQuery['articles'] | null
@@ -39,11 +38,22 @@ const Index = () => {
   const data = useLoaderData<IndexLoaderData>()
 
   return (
-    <div>
-      <Hero />
-      <Stack />
+    <div className="my-28">
+      <Intro />
       {data.articles && (
-        <Articles title="Latest Articles" articles={data.articles} />
+        <Articles
+          title="Featured Articles"
+          articles={data.articles}
+          className="mb-14"
+        />
+      )}
+      {data.articles && (
+        <Articles
+          title="Articles"
+          articles={data.articles}
+          inline
+          className="mb-28"
+        />
       )}
     </div>
   )
