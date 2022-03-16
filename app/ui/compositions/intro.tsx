@@ -16,7 +16,7 @@ export const Intro = () => {
         <img
           src="/images/avatar.png"
           alt="Pedro Reis"
-          className="rounded-full w-[80px] md:w-[120px] md:mb-0 grayscale"
+          className="rounded-full w-[80px] md:w-[120px] md:mb-0"
         />
       </div>
     </Grid>

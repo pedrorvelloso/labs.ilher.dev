@@ -12,7 +12,10 @@ import type { MetaFunction, LinksFunction, LoaderFunction } from 'remix'
 import { getDomainUrl, getUrl } from './utils/misc'
 import { getSeo } from './utils/seo'
 
+import nProgressCss from '~/styles/nprogress.css'
 import tailwindCss from '~/styles/tailwind.css'
+
+import { Progress } from './ui/components/progress'
 
 export type RootLoaderData = {
   url: {
@@ -34,6 +37,7 @@ export const meta: MetaFunction = ({ data }) => {
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: tailwindCss },
+  { rel: 'stylesheet', href: nProgressCss },
 ]
 
 export const loader: LoaderFunction = ({ request }) => {
@@ -56,6 +60,7 @@ export default function App() {
       </head>
       <body className="bg-neutral-900">
         <Outlet />
+        <Progress />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
