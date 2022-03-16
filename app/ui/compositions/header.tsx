@@ -30,7 +30,7 @@ const Menu = ({
       </li>
       <li>
         <NavAnchor
-          href="/blog"
+          href="/articles"
           color="green"
           sideAnimation={onDrawer}
           className={onDrawer ? classNameDrawer : ''}
@@ -73,17 +73,7 @@ export const Header = () => {
   return (
     <>
       <div className="h-[87px] border-b border-neutral-800 z-50 relative bg-neutral-900">
-        <nav className="max-w-5xl mx-auto px-6 flex items-center justify-between h-full">
-          <img
-            src="/images/Icon.svg"
-            alt="LABS logo"
-            className="block lg:hidden"
-          />
-          <img
-            src="/images/logo.png"
-            alt="LABS logo"
-            className="lg:block hidden"
-          />
+        <nav className="max-w-3xl mx-auto px-8 flex items-center justify-between h-full">
           <Menu className="hidden lg:flex text-neutral-400 h-full" />
           <ul className="hidden lg:flex text-neutral-400 gap-5">
             <li>

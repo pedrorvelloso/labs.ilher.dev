@@ -1,0 +1,56 @@
+pre {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+
+.prose pre::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #aaaaaa;
+}
+
+/*
+* IlherTheme
+*/
+.token.keyword, .token.tag, .token.operator {
+  color: #bae6fd;
+}
+
+.token.string, .token.attr-value {
+  color: #fde047;
+}
+
+.token.punctuation, .token.interpolation, .token.script {
+  color: #d4d4d4;
+}
+
+.token.function-variable.function, .token.generic.class-name, .token.class-name, .token.builtin {
+  color: #f0abfc;
+}
+
+.token.function, .token.attr-name {
+  color: #a5b4fc;
+}
+
+.token.interpolation-punctuation.punctuation {
+  color: #eab308;
+}
+
+.token.inserted {
+  color: #84cc16;
+  font-weight: bold;
+}
+
+.token.deleted {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.token.constant {
+  font-weight: bold;
+}

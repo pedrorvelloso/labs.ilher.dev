@@ -23,17 +23,15 @@ export const NavAnchor: React.FC<NavAnchorProps> = ({
         {
           'after:w-0 after:h-[2px] after:bottom-0 after:left-0 after:right-0 justify-center w-20':
             !sideAnimation,
-          'hover:after:w-full hover:text-white hover:font-bold':
-            !sideAnimation && !isActive,
+          'hover:after:w-full hover:text-white': !sideAnimation && !isActive,
           'after:w-full text-white font-bold': !sideAnimation && isActive,
           // side bar
           'after:h-0 after:w-1 after:bottom-0 after:right-0 px-5':
             sideAnimation,
           // side bar hover w/o active
-          'hover:after:h-full hover:text-white hover:font-bold':
-            sideAnimation && !isActive,
+          'hover:after:h-full hover:text-white': sideAnimation && !isActive,
           // side bar active
-          'after:h-full text-white font-bold': sideAnimation && isActive,
+          'after:h-full text-white': sideAnimation && isActive,
           // color scheme
           'after:bg-indigo-600': color === 'indigo',
           'after:bg-green-600': color === 'green',
