@@ -7,6 +7,7 @@ import { getArticle } from '~/server/graphcms.server'
 import { getHeaders, Swr } from '~/utils/headers'
 import { formatDate } from '~/utils/dates'
 import { locales } from '~/utils/locale'
+import { getSeoArticleMeta } from '~/utils/seo'
 
 import prismCss from '~/styles/prism.css'
 
@@ -19,7 +20,7 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: prismCss },
 ]
 
-type ArticleLoaderData = {
+export type ArticleLoaderData = {
   article: {
     title: string
     excerpt: string
@@ -32,6 +33,8 @@ type ArticleLoaderData = {
 }
 
 export const headers = getHeaders
+
+export const meta = getSeoArticleMeta
 
 export const loader: LoaderFunction = async ({ params }) => {
   const { slug, locale } = params

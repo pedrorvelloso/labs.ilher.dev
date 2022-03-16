@@ -31,6 +31,7 @@ export const meta: MetaFunction = ({ data }) => {
     ...getSeo({
       keywords: 'React, Remix, GraphCMS, Blog',
       url: getUrl(url),
+      origin: url.origin,
     }),
   }
 }

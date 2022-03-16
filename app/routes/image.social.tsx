@@ -49,8 +49,6 @@ export const loader: LoaderFunction = async ({ request }) => {
     },
   })
 
-  console.log(url)
-
   const socialImageCloudinary = await fetch(url)
   const imageBuffer = await socialImageCloudinary.arrayBuffer()
   return new Response(Buffer.from(imageBuffer), {
