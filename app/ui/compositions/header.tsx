@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTransition } from 'remix'
+import { useKBar } from 'kbar'
 
 import { Drawer } from '../components/drawer'
 import { Icon } from '../components/icon'
@@ -35,7 +36,7 @@ const Menu = ({
           sideAnimation={onDrawer}
           className={onDrawer ? classNameDrawer : ''}
         >
-          Blog
+          Articles
         </NavAnchor>
       </li>
       <li>
@@ -65,6 +66,7 @@ const Menu = ({
 export const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const transition = useTransition()
+  const kbar = useKBar()
 
   useEffect(() => {
     if (transition.state === 'loading') setDrawerOpen(false)
@@ -75,23 +77,22 @@ export const Header = () => {
       <div className="h-[87px] border-b border-neutral-800 z-50 relative bg-neutral-900">
         <nav className="max-w-3xl mx-auto px-8 flex items-center justify-between h-full">
           <Menu className="hidden lg:flex text-neutral-400 h-full" />
-          <ul className="hidden lg:flex text-neutral-400 gap-5">
-            <li>
-              <Icon name="twitter" size={ICON_SIZE} />
-            </li>
-            <li>
-              <Icon name="stargazer" size={ICON_SIZE} />
-            </li>
-            <li>
-              <Icon name="github" size={ICON_SIZE} />
-            </li>
-          </ul>
-          <Icon
-            name={drawerOpen ? 'close' : 'hamburger'}
-            size={ICON_SIZE}
-            className="text-neutral-400 flex lg:hidden"
+          <button
+            className="py-3 pr-3"
             onClick={() => setDrawerOpen((prev) => !prev)}
-          />
+          >
+            <Icon
+              name={drawerOpen ? 'close' : 'hamburger'}
+              size={ICON_SIZE}
+              className="text-neutral-400 flex lg:hidden"
+            />
+          </button>
+          <button
+            className="py-3 pl-3 text-neutral-400 hover:text-neutral-300 transition-colors"
+            onClick={kbar.query.toggle}
+          >
+            <Icon name="command" size={ICON_SIZE} />
+          </button>
         </nav>
       </div>
       <Drawer isOpen={drawerOpen}>
