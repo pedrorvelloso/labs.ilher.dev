@@ -72,7 +72,15 @@ export const KBarActions = () => {
 
 export const KBarAppProvider: React.FC = ({ children }) => {
   return (
-    <KBarProvider actions={[]}>
+    <KBarProvider
+      actions={[]}
+      options={{
+        animations: {
+          enterMs: 200,
+          exitMs: 100,
+        },
+      }}
+    >
       <KBarActions />
       <ClientOnly>{() => <CommandBar />}</ClientOnly>
       {children}
