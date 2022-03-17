@@ -1,5 +1,4 @@
 import { useNavigate } from 'remix'
-import { ClientOnly } from 'remix-utils'
 import { KBarProvider, useKBar } from 'kbar'
 
 import { Icon } from '../icon'
@@ -82,7 +81,7 @@ export const KBarAppProvider: React.FC = ({ children }) => {
       }}
     >
       <KBarActions />
-      <ClientOnly>{() => <CommandBar />}</ClientOnly>
+      <CommandBar />
       {children}
     </KBarProvider>
   )

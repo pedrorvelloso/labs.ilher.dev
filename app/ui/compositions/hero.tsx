@@ -1,4 +1,3 @@
-import { Anchor } from '../components/anchor'
 import { Grid } from '../components/grid'
 import { Icon } from '../components/icon'
 import { Text, Heading } from '../components/typograph'
@@ -28,33 +27,7 @@ export const Hero = () => {
         <Heading className="text-neutral-200">
           I&apos;m <span className="text-indigo-400">Pedro Reis</span>
         </Heading>
-        <Text className="my-4 lg:my-6">
-          I&apos;m a Software Developer based in Brazil. Currently, I&apos;m
-          working at an amazing place called{' '}
-          <Anchor
-            href="https://southsystem.com.br/"
-            className="text-south-system hover:underline"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            South System
-          </Anchor>{' '}
-          with an incredible team.
-        </Text>
-        <Text>
-          I also love retro gaming and live streaming at Twitch! I usually do
-          The Legend of Zelda: Ocarina of time speedruns at my channel. If you
-          want to follow me make sure to click{' '}
-          <Anchor
-            href="https://twitch.tv/ilher"
-            className="text-purple-400 hover:underline"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            this link
-          </Anchor>{' '}
-          😄.
-        </Text>
+        <Text>Senior Frontend Developer at South System</Text>
       </div>
     </Grid>
   )
