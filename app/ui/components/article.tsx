@@ -1,8 +1,6 @@
-import clsx from 'clsx'
-
 import { formatDate } from '~/utils/dates'
 
-import { Anchor } from './anchor'
+import { BoxAnchor } from './box-anchor'
 import { Tag } from './tag'
 import { Text } from './typograph'
 
@@ -24,16 +22,7 @@ export const Article = ({
   inline,
 }: ArticleProps) => {
   return (
-    <Anchor
-      href={`/articles/en/${slug}`}
-      className={clsx(
-        'group transition-all relative select-none before:bg-neutral-300 before:opacity-0 hover:before:opacity-100 before:block before:absolute before:-z-10 before:transition-all before:-inset-[15px] before:rounded-lg',
-        {
-          'col-span-full lg:col-span-4': !inline,
-          'col-span-full': inline,
-        },
-      )}
-    >
+    <BoxAnchor href={`/articles/en/${slug}`} inline={inline}>
       <div className="flex items-center gap-x-4 mb-2">
         <Tag>{tag}</Tag>
         <Text
@@ -58,6 +47,6 @@ export const Article = ({
       >
         {excerpt}
       </Text>
-    </Anchor>
+    </BoxAnchor>
   )
 }

@@ -21,7 +21,7 @@ export const NavAnchor: React.FC<NavAnchorProps> = ({
       clsx(
         'flex h-full items-center py-5 relative transition-colors after:absolute after:transition-all',
         {
-          'after:w-0 after:h-[2px] after:bottom-0 after:left-0 after:right-0 justify-center w-20':
+          'after:w-0 after:h-[2px] after:bottom-0 after:left-0 after:right-0 justify-center px-6':
             !sideAnimation,
           'hover:after:w-full hover:text-white': !sideAnimation && !isActive,
           'after:w-full text-white font-bold': !sideAnimation && isActive,

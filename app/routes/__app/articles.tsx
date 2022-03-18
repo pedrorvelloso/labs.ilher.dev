@@ -4,7 +4,7 @@ import { useLoaderData, json } from 'remix'
 import type { GetArticlesQuery } from '~/generated/graphql'
 
 import { getHeaders, Swr } from '~/utils/headers'
-import { getArticles } from '~/server/graphcms.server'
+import { getArticles } from '~/server/cms/graphcms.server'
 
 import { Articles } from '~/ui/compositions/articles'
 
@@ -20,6 +20,7 @@ export const loader: LoaderFunction = async () => {
   const headers = {
     ...Swr,
   }
+
   return json<ArticlesLoaderData>(
     { articles },
     {

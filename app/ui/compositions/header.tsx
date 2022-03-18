@@ -41,22 +41,22 @@ const Menu = ({
       </li>
       <li>
         <NavAnchor
+          href="/bookmarks"
+          color="orange"
+          sideAnimation={onDrawer}
+          className={onDrawer ? classNameDrawer : ''}
+        >
+          Bookmarks
+        </NavAnchor>
+      </li>
+      <li>
+        <NavAnchor
           href="/watch"
           color="purple"
           sideAnimation={onDrawer}
           className={onDrawer ? classNameDrawer : ''}
         >
           Watch
-        </NavAnchor>
-      </li>
-      <li>
-        <NavAnchor
-          href="/about"
-          color="orange"
-          sideAnimation={onDrawer}
-          className={onDrawer ? classNameDrawer : ''}
-        >
-          About
         </NavAnchor>
       </li>
     </ul>

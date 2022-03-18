@@ -2,7 +2,7 @@ import type { LoaderFunction, LinksFunction } from 'remix'
 import { json, useLoaderData } from 'remix'
 
 import type { Tag as ArticleTag } from '~/generated/graphql'
-import { getArticle } from '~/server/graphcms.server'
+import { getArticle } from '~/server/cms/graphcms.server'
 
 import { getHeaders, Swr } from '~/utils/headers'
 import { formatDate } from '~/utils/dates'

@@ -9,6 +9,7 @@ import {
   FiCommand,
   FiTwitch,
   FiPlayCircle,
+  FiArrowUpRight,
 } from 'react-icons/fi'
 import { GoLocation, GoHome, GoPencil } from 'react-icons/go'
 import { SiTypescript } from 'react-icons/si'
@@ -29,6 +30,7 @@ const iconMap = {
   command: FiCommand,
   twitch: FiTwitch,
   watch: FiPlayCircle,
+  arrowUpRight: FiArrowUpRight,
 }
 
 interface IconProps extends IconBaseProps {

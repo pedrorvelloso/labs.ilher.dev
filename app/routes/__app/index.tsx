@@ -1,22 +1,24 @@
 import type { LoaderFunction } from 'remix'
 import { useLoaderData, json } from 'remix'
 
-import type { GetArticlesQuery } from '~/generated/graphql'
-import { getArticles } from '~/server/graphcms.server'
+import type { GetHomeInfoQuery } from '~/generated/graphql'
+import { getHomeInfo } from '~/server/cms/graphcms.server'
 
 import { getHeaders, Swr } from '~/utils/headers'
 
 import { Articles } from '~/ui/compositions/articles'
 import { Intro } from '~/ui/compositions/intro'
+import { Bookmarks } from '~/ui/compositions/bookmarks'
 
 type IndexLoaderData = {
-  articles: GetArticlesQuery['articles'] | null
+  articles: GetHomeInfoQuery['articles'] | null
+  bookmarks: GetHomeInfoQuery['bookmarks'] | null
 }
 
 export const headers = getHeaders
 
 export const loader: LoaderFunction = async () => {
-  const articles = await getArticles()
+  const { articles, bookmarks } = await getHomeInfo()
 
   const headers = {
     ...Swr,
@@ -24,13 +26,16 @@ export const loader: LoaderFunction = async () => {
 
   try {
     return json<IndexLoaderData>(
-      { articles },
+      { articles, bookmarks },
       {
         headers,
       },
     )
   } catch {
-    return json<IndexLoaderData>({ articles: null }, { headers })
+    return json<IndexLoaderData>(
+      { articles: null, bookmarks: null },
+      { headers },
+    )
   }
 }
 
@@ -47,14 +52,7 @@ const Index = () => {
           className="mb-14"
         />
       )}
-      {data.articles && (
-        <Articles
-          title="Articles"
-          articles={data.articles}
-          inline
-          className="mb-28"
-        />
-      )}
+      {data.bookmarks && <Bookmarks bookmarks={data.bookmarks} />}
     </div>
   )
 }

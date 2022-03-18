@@ -2,25 +2,20 @@ import type {
   GetArticlesQuery,
   GetArticleQuery,
   GetArticleTitleQuery,
+  GetHomeInfoQuery,
+  GetBookmarksQuery,
 } from '~/generated/graphql'
-import { fetchFromGraphQL, gql } from '~/utils/graphql'
+import { fetchFromGraphQL } from '~/utils/graphql'
 
-import { buildHtml } from './markdown.server'
+import { buildHtml } from '../markdown.server'
 
-const GetArticles = gql`
-  query GetArticles($first: Int, $stage: Stage!) {
-    articles(first: $first, stage: $stage, orderBy: publishedAt_DESC) {
-      title
-      excerpt
-      slug
-      tags {
-        id
-        name
-      }
-      publishedAt
-    }
-  }
-`
+import {
+  GetArticle,
+  GetArticles,
+  GetArticleTitle,
+  GetBookmarks,
+  GetHomeInfo,
+} from './graphql'
 
 export const getArticles = async (
   first = 3,
@@ -37,24 +32,6 @@ export const getArticles = async (
 
   return data.articles
 }
-
-const GetArticle = gql`
-  query GetArticle($slug: String!, $locale: [Locale!]!) {
-    article(locales: $locale, where: { slug: $slug }) {
-      title
-      publishedAt
-      slug
-      content
-      excerpt
-      tags {
-        name
-      }
-      localizations {
-        locale
-      }
-    }
-  }
-`
 
 export const getArticle = async (
   slug: string,
@@ -75,14 +52,6 @@ export const getArticle = async (
   return { ...data.article, content: contentHtml }
 }
 
-const GetArticleTitle = gql`
-  query GetArticleTitle($slug: String!, $locale: [Locale!]!) {
-    article(locales: $locale, where: { slug: $slug }) {
-      title
-    }
-  }
-`
-
 export const getArticleTitle = async (
   slug: string,
   locale?: string | null,
@@ -98,4 +67,32 @@ export const getArticleTitle = async (
   if (errors) throw new Error('error fetching article')
 
   return data.article
+}
+
+export const getHomeInfo = async (
+  stage: 'DRAFT' | 'PUBLISHED' = 'PUBLISHED',
+): Promise<GetHomeInfoQuery> => {
+  const result = await fetchFromGraphQL(GetHomeInfo, { stage })
+
+  const { data, errors } = result
+
+  if (errors) throw new Error('error fetching home info')
+
+  return {
+    articles: data.articles,
+    bookmarks: data.bookmarks,
+  }
+}
+
+export const getBookmarks = async (
+  first = 3,
+  stage: 'DRAFT' | 'PUBLISHED' = 'PUBLISHED',
+): Promise<GetBookmarksQuery['bookmarks']> => {
+  const result = await fetchFromGraphQL(GetBookmarks, { first, stage })
+
+  const { data, errors } = result
+
+  if (errors) throw new Error('error fetching bookmarks')
+
+  return data.bookmarks
 }
