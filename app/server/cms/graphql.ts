@@ -65,6 +65,7 @@ export const GetHomeInfo = gql`
       first: 5
       stage: $stage
       orderBy: publishedAt_DESC
+      where: { type: bookmark }
     ) {
       url
       title
