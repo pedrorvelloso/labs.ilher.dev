@@ -61,7 +61,11 @@ export const GetHomeInfo = gql`
       }
       publishedAt
     }
-    bookmarks(first: 5, stage: $stage, orderBy: publishedAt_DESC) {
+    bookmarks: externalUrls(
+      first: 5
+      stage: $stage
+      orderBy: publishedAt_DESC
+    ) {
       url
       title
     }
@@ -69,10 +73,25 @@ export const GetHomeInfo = gql`
 `
 
 export const GetBookmarks = gql`
-  query GetBookmarks($stage: Stage!, $first: Int) {
-    bookmarks(stage: $stage, first: $first, orderBy: publishedAt_DESC) {
+  query GetBookmarks($stage: Stage!, $limit: Int) {
+    bookmarks: externalUrls(
+      stage: $stage
+      first: $limit
+      orderBy: publishedAt_DESC
+      where: { type: bookmark }
+    ) {
       title
       url
+    }
+  }
+`
+
+export const GetWatch = gql`
+  query GetWatch($stage: Stage!, $first: Int) {
+    links: externalUrls(where: { type: stream }, stage: $stage, first: $first) {
+      title
+      url
+      content
     }
   }
 `

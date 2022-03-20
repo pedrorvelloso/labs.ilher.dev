@@ -29,6 +29,10 @@ export const Drawer: React.FC<DrawerProps> = ({ children, isOpen }) => {
             duration: 0.15,
           }}
           className="fixed top-0 pt-[87px] pb-20 h-screen w-screen visible lg:invisible bg-neutral-900 z-20 border-b border-neutral-800 overflow-auto"
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+          }}
         >
           {children}
         </motion.div>

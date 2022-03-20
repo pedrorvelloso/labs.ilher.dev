@@ -4,6 +4,7 @@ import type {
   GetArticleTitleQuery,
   GetHomeInfoQuery,
   GetBookmarksQuery,
+  GetWatchQuery,
 } from '~/generated/graphql'
 import { fetchFromGraphQL } from '~/utils/graphql'
 
@@ -15,6 +16,7 @@ import {
   GetArticleTitle,
   GetBookmarks,
   GetHomeInfo,
+  GetWatch,
 } from './graphql'
 
 export const getArticles = async (
@@ -95,4 +97,17 @@ export const getBookmarks = async (
   if (errors) throw new Error('error fetching bookmarks')
 
   return data.bookmarks
+}
+
+export const getWatch = async (
+  first = 3,
+  stage: 'DRAFT' | 'PUBLISHED' = 'PUBLISHED',
+): Promise<GetWatchQuery['links']> => {
+  const result = await fetchFromGraphQL(GetWatch, { first, stage })
+
+  const { data, errors } = result
+
+  if (errors) throw new Error('error fetching bookmarks')
+
+  return data.links
 }
