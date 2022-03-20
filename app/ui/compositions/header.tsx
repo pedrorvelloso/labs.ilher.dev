@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTransition } from 'remix'
+import { motion, type Variants } from 'framer-motion'
 import { useKBar } from 'kbar'
 
 import { Drawer } from '../components/drawer'
@@ -7,6 +8,16 @@ import { Icon } from '../components/icon'
 import { NavAnchor } from '../components/nav-anchor'
 
 const ICON_SIZE = 20
+
+const list: Variants = {
+  initial: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+}
+
+const item: Variants = {
+  initial: { opacity: 0 },
+  visible: { opacity: 1 },
+}
 
 const Menu = ({
   onDrawer,
@@ -19,8 +30,13 @@ const Menu = ({
     'bg-gradient-to-tl from-neutral-900 to-neutral-800 ml-5 my-5 rounded-l-md select-none'
 
   return (
-    <ul className={className}>
-      <li>
+    <motion.ul
+      variants={list}
+      initial="initial"
+      animate="visible"
+      className={className}
+    >
+      <motion.li variants={item}>
         <NavAnchor
           href="/"
           sideAnimation={onDrawer}
@@ -28,8 +44,8 @@ const Menu = ({
         >
           Home
         </NavAnchor>
-      </li>
-      <li>
+      </motion.li>
+      <motion.li variants={item}>
         <NavAnchor
           href="/articles"
           color="green"
@@ -38,8 +54,8 @@ const Menu = ({
         >
           Articles
         </NavAnchor>
-      </li>
-      <li>
+      </motion.li>
+      <motion.li variants={item}>
         <NavAnchor
           href="/bookmarks"
           color="orange"
@@ -48,8 +64,8 @@ const Menu = ({
         >
           Bookmarks
         </NavAnchor>
-      </li>
-      <li>
+      </motion.li>
+      <motion.li variants={item}>
         <NavAnchor
           href="/watch"
           color="purple"
@@ -58,8 +74,8 @@ const Menu = ({
         >
           Watch
         </NavAnchor>
-      </li>
-    </ul>
+      </motion.li>
+    </motion.ul>
   )
 }
 
