@@ -22,7 +22,7 @@ export const Article = ({
   inline,
 }: ArticleProps) => {
   return (
-    <BoxAnchor href={`/articles/en/${slug}`} inline={inline}>
+    <BoxAnchor href={`/articles/en/${slug}`} inline={inline} prefetch="intent">
       <div className="flex items-center gap-x-4 mb-2">
         <Tag>{tag}</Tag>
         <Text

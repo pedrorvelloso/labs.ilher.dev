@@ -68,7 +68,11 @@ const ArticlePage = () => {
           </Text>
           <div className="flex items-center gap-2 mt-3">
             {article.localizations.map(({ locale }) => (
-              <Anchor key={locale} href={`/articles/${locale}/${article.slug}`}>
+              <Anchor
+                key={locale}
+                href={`/articles/${locale}/${article.slug}`}
+                prefetch="intent"
+              >
                 <Tag>Read in {locales[locale]}</Tag>
               </Anchor>
             ))}
