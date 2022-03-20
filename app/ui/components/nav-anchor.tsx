@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 import { Anchor, AnchorProps } from './anchor'
 
-interface NavAnchorProps extends Omit<AnchorProps, 'isNav'> {
+export interface NavAnchorProps extends Omit<AnchorProps, 'isNav'> {
   color?: 'indigo' | 'green' | 'orange' | 'purple'
   sideAnimation?: boolean
 }
