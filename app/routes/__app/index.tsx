@@ -50,6 +50,7 @@ const Index = () => {
           title="Featured Articles"
           articles={data.articles}
           className="mb-14"
+          showReadAll
         />
       )}
       {data.bookmarks && <Bookmarks bookmarks={data.bookmarks} />}

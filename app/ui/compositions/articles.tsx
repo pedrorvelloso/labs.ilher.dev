@@ -2,8 +2,10 @@ import clsx from 'clsx'
 
 import type { GetArticlesQuery } from '~/generated/graphql'
 
+import { Anchor } from '../components/anchor'
 import { Article } from '../components/article'
 import { Grid } from '../components/grid'
+import { Icon } from '../components/icon'
 import { Heading } from '../components/typograph'
 
 interface ArticlesProps {
@@ -11,6 +13,7 @@ interface ArticlesProps {
   title: string
   inline?: boolean
   className?: string
+  showReadAll?: boolean
 }
 
 export const Articles = ({
@@ -18,6 +21,7 @@ export const Articles = ({
   articles,
   inline = false,
   className,
+  showReadAll = false,
 }: ArticlesProps) => {
   return (
     <>
@@ -43,6 +47,14 @@ export const Articles = ({
             inline={inline}
           />
         ))}
+        {showReadAll && (
+          <Anchor
+            href="/articles"
+            className="col-span-full flex items-center gap-x-2 text-neutral-500 hover:text-neutral-300 transition-colors"
+          >
+            Read All Artciles <Icon name="arrowRight" />
+          </Anchor>
+        )}
       </Grid>
     </>
   )
