@@ -9,6 +9,7 @@ import { ListSection } from './list-section'
 interface ArticlesProps {
   articles: GetArticlesQuery['articles']
   title: string
+  subtitle?: React.ReactNode
   inline?: boolean
   className?: string
   showReadAll?: boolean
@@ -16,13 +17,14 @@ interface ArticlesProps {
 
 export const Articles = ({
   title,
+  subtitle,
   articles,
   inline = false,
   className,
   showReadAll = false,
 }: ArticlesProps) => {
   return (
-    <ListSection title={title} className={className}>
+    <ListSection title={title} subtitle={subtitle} className={className}>
       {articles.map((article) => (
         <Article
           key={article.slug}

@@ -91,7 +91,10 @@ const ArticlePage = () => {
           </Text>
           <div className="flex gap-2">
             {article.tags.map((tag) => (
-              <Anchor key={tag.name} href="/">
+              <Anchor
+                key={tag.name}
+                href={`/articles?q=${tag.name}&scope=tags`}
+              >
                 <Tag>{tag.name}</Tag>
               </Anchor>
             ))}

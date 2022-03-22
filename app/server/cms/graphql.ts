@@ -2,8 +2,8 @@ import { gql } from '~/utils/graphql'
 
 // get articles
 export const GetArticles = gql`
-  query GetArticles($first: Int, $stage: Stage!) {
-    articles(first: $first, stage: $stage, orderBy: publishedAt_DESC) {
+  query GetArticles($first: Int, $where: ArticleWhereInput) {
+    articles(first: $first, orderBy: publishedAt_DESC, where: $where) {
       title
       excerpt
       slug

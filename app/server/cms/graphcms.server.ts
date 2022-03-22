@@ -19,13 +19,34 @@ import {
   GetWatch,
 } from './graphql'
 
+export const getArticlesWhere = (
+  query?: string,
+  scope: 'all' | 'tags' = 'all',
+) => {
+  const OR = []
+
+  const contentWhere = { _search: query }
+  const tagPrep = query?.split(' ').map((value) => ({ name_contains: value }))
+  const tagWhere = tagPrep && { tags_some: { OR: [...tagPrep] } }
+
+  if (query && scope === 'all') OR.push(contentWhere)
+  if (tagWhere) OR.push(tagWhere)
+
+  return { OR }
+}
+
 export const getArticles = async (
   first = 3,
-  stage: 'DRAFT' | 'PUBLISHED' = 'PUBLISHED',
+  options?: { query?: string; scope: 'all' | 'tags' },
 ): Promise<GetArticlesQuery['articles']> => {
+  // get where based on scope
+  // filters based on content/title/tags if all
+  // otherwise filters only base on tags
+  const where = getArticlesWhere(options?.query, options?.scope)
+
   const result = await fetchFromGraphQL(GetArticles, {
     first,
-    stage,
+    where,
   })
 
   const { data, errors } = result
