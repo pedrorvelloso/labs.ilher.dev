@@ -49,7 +49,7 @@ const Blog = () => {
               type="search"
               name="q"
               defaultValue={data.term}
-              className="w-full bg-transparent outline-none placeholder:text-neutral-500"
+              className="w-full appearance-none bg-neutral-800 outline-none placeholder:text-neutral-500"
               placeholder="Search articles"
             />
             <button type="submit">
