@@ -30,11 +30,7 @@ export const loader: LoaderFunction = async () => {
 const WatchPage = () => {
   const { links } = useLoaderData<WatchPageLoaderData>()
 
-  return (
-    <div className="my-14">
-      <WatchList links={links} />
-    </div>
-  )
+  return <WatchList links={links} />
 }
 
 export default WatchPage

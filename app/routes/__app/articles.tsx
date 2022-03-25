@@ -41,9 +41,9 @@ const Blog = () => {
   const data = useLoaderData<ArticlesLoaderData>()
 
   return (
-    <div className="my-14">
+    <>
       <Grid>
-        <Form method="get" role="search" className="col-span-full mb-6">
+        <Form method="get" role="search" className="col-span-full mb-14">
           <div className="bg-neutral-800 w-full p-3 rounded-lg flex items-center justify-between text-neutral-300 gap-x-4">
             <input
               type="search"
@@ -73,7 +73,7 @@ const Blog = () => {
         inline
         className="mb-14"
       />
-    </div>
+    </>
   )
 }
 

@@ -59,7 +59,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-neutral-900">
+      <body className="bg-neutral-900 text-neutral-300">
         <Outlet />
         <Progress />
         <ScrollRestoration />

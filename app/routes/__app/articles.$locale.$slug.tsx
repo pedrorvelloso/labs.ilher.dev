@@ -57,7 +57,7 @@ const ArticlePage = () => {
   const { article } = useLoaderData<ArticleLoaderData>()
 
   return (
-    <div className="my-14">
+    <>
       <Grid as="section" className="mb-5">
         <div className="col-span-full lg:col-span-10 lg:col-start-2">
           <Heading className="text-neutral-200 font-bold">
@@ -101,7 +101,7 @@ const ArticlePage = () => {
           </div>
         </div>
       </Grid>
-    </div>
+    </>
   )
 }
 

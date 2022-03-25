@@ -43,7 +43,7 @@ const Index = () => {
   const data = useLoaderData<IndexLoaderData>()
 
   return (
-    <div className="my-14">
+    <>
       <Intro />
       {data.articles && (
         <Articles
@@ -54,7 +54,7 @@ const Index = () => {
         />
       )}
       {data.bookmarks && <Bookmarks bookmarks={data.bookmarks} />}
-    </div>
+    </>
   )
 }
 

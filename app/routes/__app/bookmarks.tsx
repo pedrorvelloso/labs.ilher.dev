@@ -28,11 +28,7 @@ export const loader: LoaderFunction = async () => {
 const BookmarksPage = () => {
   const data = useLoaderData<BookmarksLoaderData>()
 
-  return (
-    <div className="my-14">
-      <Bookmarks bookmarks={data.bookmarks} />
-    </div>
-  )
+  return <Bookmarks bookmarks={data.bookmarks} />
 }
 
 export default BookmarksPage

@@ -12,6 +12,8 @@ import {
   FiArrowUpRight,
   FiArrowRight,
   FiSearch,
+  FiBookmark,
+  FiLinkedin,
 } from 'react-icons/fi'
 import { GoLocation, GoHome, GoPencil } from 'react-icons/go'
 import { SiTypescript } from 'react-icons/si'
@@ -35,6 +37,8 @@ const iconMap = {
   arrowUpRight: FiArrowUpRight,
   arrowRight: FiArrowRight,
   search: FiSearch,
+  bookmark: FiBookmark,
+  linkedin: FiLinkedin,
 }
 
 interface IconProps extends IconBaseProps {
