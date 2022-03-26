@@ -16,10 +16,7 @@ export const Hero = () => {
         />
       </div>
       <div className="md:row-start-1 col-span-full md:col-span-4 lg:col-span-5 text-neutral-300 flex flex-col lg:justify-center">
-        <Text
-          overrideColor
-          className="text-sm flex items-center gap-x-1 text-neutral-400 mb-2"
-        >
+        <Text className="text-sm flex items-center gap-x-1 text-neutral-400 mb-2">
           <Icon name="pin" className="text-red-500 animate-bounce" /> Brasília,
           Brazil
         </Text>

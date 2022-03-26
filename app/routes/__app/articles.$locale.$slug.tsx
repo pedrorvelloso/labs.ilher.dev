@@ -63,7 +63,7 @@ const ArticlePage = () => {
           <Heading className="text-neutral-200 font-bold">
             {article.title}
           </Heading>
-          <Text className="text-neutral-400" size="base" overrideColor>
+          <Text className="text-neutral-400" size="base">
             {article.publishedAt ? formatDate(article.publishedAt) : 'DRAFT'}
           </Text>
           <div className="flex items-center gap-2 mt-3">
@@ -86,9 +86,7 @@ const ArticlePage = () => {
       />
       <Grid className="mt-28">
         <div className="col-span-full lg:col-span-10 lg:col-start-2">
-          <Text overrideColor className="text-neutral-400 text-sm mb-2">
-            Tags:
-          </Text>
+          <Text className="text-neutral-400 text-sm mb-2">Tags:</Text>
           <div className="flex gap-2">
             {article.tags.map((tag) => (
               <Anchor

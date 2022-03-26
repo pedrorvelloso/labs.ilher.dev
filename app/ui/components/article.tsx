@@ -26,7 +26,6 @@ export const Article = ({
       <div className="flex items-center gap-x-4 mb-2">
         <Tag>{tag}</Tag>
         <Text
-          overrideColor
           size="xs"
           className="text-neutral-400 group-hover:text-neutral-700"
         >
@@ -41,7 +40,6 @@ export const Article = ({
         {title}
       </Text>
       <Text
-        overrideColor
         size="base"
         className="text-neutral-400 group-hover:text-neutral-700 text-sm"
       >

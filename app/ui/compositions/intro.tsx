@@ -7,7 +7,7 @@ export const Intro = () => {
       <div className="row-start-2 md:row-start-1 col-span-5 lg:col-span-7">
         <Heading className="font-bold text-neutral-200">Pedro Reis</Heading>
         <Text>Senior Frontend Developer at South System</Text>
-        <Text overrideColor className="text-neutral-400 mt-3">
+        <Text className="text-neutral-400 mt-3">
           Creating fast and cool experiences. Posting about web development,
           Tailwind and React / Remix
         </Text>

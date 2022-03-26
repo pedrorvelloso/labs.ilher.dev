@@ -9,7 +9,6 @@ interface TagProps {
 export const Tag: React.FC<TagProps> = ({ className, children }) => {
   return (
     <Text
-      overrideColor
       size="xs"
       className={clsx(
         className,

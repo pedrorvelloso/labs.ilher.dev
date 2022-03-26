@@ -9,6 +9,7 @@ import { getArticles } from '~/server/cms/graphcms.server'
 import { Articles } from '~/ui/compositions/articles'
 import { Grid } from '~/ui/components/grid'
 import { Icon } from '~/ui/components/icon'
+import { Input } from '~/ui/components/input'
 
 type ArticlesLoaderData = {
   articles: GetArticlesQuery['articles']
@@ -44,18 +45,17 @@ const Blog = () => {
     <>
       <Grid>
         <Form method="get" role="search" className="col-span-full mb-14">
-          <div className="bg-neutral-800 w-full p-3 rounded-lg flex items-center justify-between text-neutral-300 gap-x-4">
-            <input
-              type="search"
-              name="q"
-              defaultValue={data.term}
-              className="w-full appearance-none bg-neutral-800 outline-none placeholder:text-neutral-500"
-              placeholder="Search articles"
-            />
-            <button type="submit">
-              <Icon name="search" size={22} />
-            </button>
-          </div>
+          <Input
+            type="search"
+            name="q"
+            defaultValue={data.term}
+            placeholder="Search articles"
+            rightContent={
+              <button type="submit">
+                <Icon name="search" size={22} />
+              </button>
+            }
+          />
         </Form>
       </Grid>
       <Articles

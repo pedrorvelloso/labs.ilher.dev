@@ -1,5 +1,15 @@
 import type { ActionFunction } from 'remix'
+import { json } from 'remix'
+import { ConvertKitSubscriptionResponse } from '~/types/convertKit'
 import { getEnv } from '~/utils/misc'
+
+interface ConvertKitSubscription {
+  error?: string
+  message?: string
+  subscription?: {
+    state: string
+  }
+}
 
 export const createConvertKitAction: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -25,5 +35,17 @@ export const createConvertKitAction: ActionFunction = async ({ request }) => {
     },
   )
 
-  return response.json()
+  const { error, message }: ConvertKitSubscription = await response.json()
+
+  if (error) {
+    return json<ConvertKitSubscriptionResponse>(
+      {
+        status: 'error',
+        error: message,
+      },
+      { status: 400 },
+    )
+  }
+
+  return json<ConvertKitSubscriptionResponse>({ status: 'success' })
 }

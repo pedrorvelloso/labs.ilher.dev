@@ -28,10 +28,7 @@ export const ListSection: React.FC<ListSectionProps> = ({
         {title}
       </Heading>
       {subtitle && (
-        <Text
-          overrideColor
-          className="mb-6 max-w-3xl mx-auto px-8 text-neutral-500"
-        >
+        <Text className="mb-6 max-w-3xl mx-auto px-8 text-neutral-500">
           {subtitle}
         </Text>
       )}

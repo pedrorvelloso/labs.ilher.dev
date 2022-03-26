@@ -4,7 +4,6 @@ import { PolymorphicComponentProps } from '~/types/polymorphic'
 interface TextOwnProps {
   className?: string
   children?: React.ReactNode
-  overrideColor?: boolean
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl'
 }
 
@@ -18,7 +17,6 @@ export const Text = <Component extends React.ElementType>({
   as,
   className,
   children,
-  overrideColor = false,
   size = 'base',
   ...otherProps
 }: TextProps<Component>) => {
@@ -27,7 +25,6 @@ export const Text = <Component extends React.ElementType>({
   return (
     <Tag
       className={clsx(className, {
-        'text-neutral-300': !overrideColor,
         'text-lg': size === 'lg',
         'text-xs': size === 'xs',
         'text-sm': size === 'lg',
