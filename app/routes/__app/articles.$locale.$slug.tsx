@@ -11,6 +11,8 @@ import { getSeoArticleMeta } from '~/utils/seo'
 
 import prismCss from '~/styles/prism.css'
 
+import { Error } from '~/ui/compositions/error'
+
 import { Grid } from '~/ui/components/grid'
 import { Heading, Text } from '~/ui/components/typograph'
 import { Tag } from '~/ui/components/tag'
@@ -101,6 +103,10 @@ const ArticlePage = () => {
       </Grid>
     </>
   )
+}
+
+export const CatchBoundary = () => {
+  return <Error code={404} message="Article not found!" />
 }
 
 export default ArticlePage

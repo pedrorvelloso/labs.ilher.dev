@@ -13,7 +13,8 @@ module.exports = {
         mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
       },
       minHeight: {
-        'index-hero': 'calc(100vh - 87px)',
+        'index-hero': 'calc(100vh - 87px - 80px)',
+        error: '50vh',
       },
       backgroundImage: {
         stack:

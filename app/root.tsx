@@ -6,6 +6,8 @@ import {
   Scripts,
   ScrollRestoration,
   json,
+  useCatch,
+  useLocation,
 } from 'remix'
 import type { MetaFunction, LinksFunction, LoaderFunction } from 'remix'
 
@@ -14,7 +16,9 @@ import { getSeo } from './utils/seo'
 
 import nProgressCss from '~/styles/nprogress.css'
 import tailwindCss from '~/styles/tailwind.css'
+import noScriptCss from '~/styles/no-script.css'
 
+import { Error } from './ui/compositions/error'
 import { Progress } from './ui/components/progress'
 
 export type RootLoaderData = {
@@ -58,6 +62,9 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <noscript>
+          <link rel="stylesheet" href={noScriptCss} />
+        </noscript>
       </head>
       <body className="bg-neutral-900 text-neutral-300">
         <Outlet />
@@ -65,6 +72,57 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+      </body>
+    </html>
+  )
+}
+
+export const CatchBoundary = () => {
+  const caught = useCatch()
+  const location = useLocation()
+
+  if (caught.status === 404) {
+    return (
+      <html lang="en">
+        <head>
+          <title>Oh no...</title>
+          <Links />
+          <noscript>
+            <link rel="stylesheet" href={noScriptCss} />
+          </noscript>
+        </head>
+        <body className="bg-neutral-900 text-neutral-300">
+          <div className="h-screen">
+            <Error
+              code={caught.status}
+              message={`Page ${location.pathname} does not exists!`}
+            />
+          </div>
+          <Scripts />
+        </body>
+      </html>
+    )
+  }
+}
+
+export const ErrorBoundary = () => {
+  return (
+    <html lang="en">
+      <head>
+        <title>Oh no...</title>
+        <Links />
+        <noscript>
+          <link rel="stylesheet" href={noScriptCss} />
+        </noscript>
+      </head>
+      <body className="bg-neutral-900 text-neutral-300">
+        <div className="h-screen">
+          <Error
+            code={500}
+            message="Something went wrong! Please try again later."
+          />
+        </div>
+        <Scripts />
       </body>
     </html>
   )
