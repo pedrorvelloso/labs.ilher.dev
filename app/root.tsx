@@ -86,6 +86,8 @@ export const CatchBoundary = () => {
       <html lang="en">
         <head>
           <title>Oh no...</title>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
           <Links />
           <noscript>
             <link rel="stylesheet" href={noScriptCss} />
@@ -110,6 +112,8 @@ export const ErrorBoundary = () => {
     <html lang="en">
       <head>
         <title>Oh no...</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Links />
         <noscript>
           <link rel="stylesheet" href={noScriptCss} />

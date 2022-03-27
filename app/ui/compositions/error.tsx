@@ -19,7 +19,12 @@ const Typist = ({ word, className }: { word: string; className?: string }) => {
   const letters = word.split('')
 
   return (
-    <motion.div variants={container} initial="initial" animate="visible">
+    <motion.div
+      variants={container}
+      initial="initial"
+      animate="visible"
+      className="text-center"
+    >
       {letters.map((letter, idx) => (
         <motion.span
           key={`${letter}-${idx}`}
@@ -40,7 +45,7 @@ interface ErrorProps {
 
 export const Error = ({ code, message }: ErrorProps) => {
   return (
-    <div className="font-mono min-h-error h-full flex-1 flex flex-col justify-center items-center">
+    <div className="font-mono min-h-error h-full flex-1 flex flex-col justify-center items-center p-3">
       <Typist word={message} className="text-xl" />
       <motion.h1
         animate={{ opacity: 1 }}
