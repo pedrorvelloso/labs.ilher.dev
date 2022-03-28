@@ -73,7 +73,7 @@ export const socials: Array<CommonMenuItem> = [
     section: Section.SOCIALS,
   },
   {
-    name: 'LinkedIn',
+    name: 'Linkedin',
     href: 'https://www.linkedin.com/in/pedro-reis-043b30163/',
     icon: <Icon name="linkedin" />,
     keywords: 'linkedin cv',

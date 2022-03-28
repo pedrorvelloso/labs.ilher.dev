@@ -6,7 +6,6 @@ export interface AnchorProps {
   className?: string | NavLinkProps['className']
   prefetch?: 'intent' | 'none' | 'render'
   target?: React.HTMLAttributeAnchorTarget
-  rel?: string
   isNav?: boolean
 }
 
@@ -14,7 +13,6 @@ export const Anchor: React.FC<AnchorProps> = ({
   href,
   className,
   prefetch,
-  rel,
   target,
   children,
   isNav,
@@ -25,7 +23,7 @@ export const Anchor: React.FC<AnchorProps> = ({
     return (
       <a
         href={href}
-        rel={rel}
+        rel={target === '_blank' ? 'noreferrer noopener' : undefined}
         target={target}
         className={className?.toString()}
       >

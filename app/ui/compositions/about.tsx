@@ -11,7 +11,6 @@ export const About = () => {
           href="https://southsystem.com.br/"
           className="text-south-system hover:underline"
           target="_blank"
-          rel="noreferrer noopener"
         >
           South System
         </Anchor>{' '}
@@ -25,7 +24,6 @@ export const About = () => {
           href="https://twitch.tv/ilher"
           className="text-purple-400 hover:underline"
           target="_blank"
-          rel="noreferrer noopener"
         >
           this link
         </Anchor>{' '}

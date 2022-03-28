@@ -13,7 +13,6 @@ export const WatchBox = ({ content, title, url }: WatchBoxProps) => {
       href={url}
       inline
       target="_blank"
-      rel="noreferrer noopener"
       className="flex items-center justify-between"
     >
       <div className="flex flex-col gap-y-2 w-[85%] lg:w-fit">

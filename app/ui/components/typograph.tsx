@@ -27,7 +27,7 @@ export const Text = <Component extends React.ElementType>({
       className={clsx(className, {
         'text-lg': size === 'lg',
         'text-xs': size === 'xs',
-        'text-sm': size === 'lg',
+        'text-sm': size === 'sm',
         'text-base': size === 'base',
         'text-xl': size === 'xl',
       })}

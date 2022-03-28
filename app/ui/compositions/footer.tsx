@@ -11,7 +11,7 @@ export const Footer = () => {
     <>
       <hr className="border-t border-neutral-800" />
       <Container as="footer" className="w-full">
-        <div className="col-span-full pt-14 pb-16">
+        <div className="flex flex-col gap-y-12 lg:gap-y-24 pt-14 pb-16">
           <Grid onlyGrid className="gap-y-4">
             <ul className="col-span-full lg:col-span-3 flex flex-col gap-y-4">
               <li className="font-bold">Website</li>
@@ -33,7 +33,6 @@ export const Footer = () => {
                   <Anchor
                     href={href}
                     target="_blank"
-                    rel="noreferrer noopener"
                     className="text-neutral-400/90 hover:text-neutral-300 transition-colors"
                   >
                     {name}
@@ -50,6 +49,25 @@ export const Footer = () => {
               <ConvertKitInputForm formId="3034146" />
             </div>
           </Grid>
+          <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:items-end gap-y-8">
+            <Text className="text-neutral-400 lg:text-base" size="sm">
+              All rights reserved © Pedro R. Santos {new Date().getFullYear()}
+            </Text>
+            <div className="select-none cursor-pointer">
+              <Anchor href="https://remix.run/" target="_blank">
+                <Text size="sm" className="text-white">
+                  Built with
+                </Text>
+                <img
+                  src="/images/remix-dark.svg"
+                  alt="Remix logo"
+                  className="h-6"
+                  height="24"
+                  width="96"
+                />
+              </Anchor>
+            </div>
+          </div>
         </div>
       </Container>
     </>

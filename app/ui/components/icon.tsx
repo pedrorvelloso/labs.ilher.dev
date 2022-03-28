@@ -1,4 +1,4 @@
-import { IconBaseProps } from 'react-icons'
+import type { IconBaseProps } from 'react-icons'
 
 import { FaBars, FaTimes, FaNodeJs, FaReact } from 'react-icons/fa'
 import {

@@ -2,8 +2,7 @@ import clsx from 'clsx'
 
 import { Anchor, AnchorProps } from './anchor'
 
-interface BoxAnchorProps
-  extends Pick<AnchorProps, 'rel' | 'target' | 'prefetch'> {
+interface BoxAnchorProps extends Pick<AnchorProps, 'target' | 'prefetch'> {
   href: string
   inline?: boolean
   className?: string
