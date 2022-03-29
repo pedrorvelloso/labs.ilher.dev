@@ -1,4 +1,5 @@
 import type { GetArticlesQuery } from '~/generated/graphql'
+import { routes } from '~/utils/menu'
 
 import { Anchor } from '../components/anchor'
 import { Article } from '../components/article'
@@ -38,7 +39,7 @@ export const Articles = ({
       ))}
       {showReadAll && (
         <Anchor
-          href="/articles"
+          href={routes.articles}
           className="col-span-full flex items-center gap-x-2 text-neutral-500 hover:text-neutral-300 transition-colors"
         >
           Read All Artciles <Icon name="arrowRight" />

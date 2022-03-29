@@ -15,6 +15,13 @@ interface CommonMenuItem {
   section: Section
 }
 
+export const routes = {
+  home: '/',
+  articles: '/articles',
+  bookmarks: '/bookmarks',
+  watch: '/watch',
+}
+
 export const menuList: Array<
   CommonMenuItem & {
     color?: NavAnchorProps['color']
@@ -22,7 +29,7 @@ export const menuList: Array<
 > = [
   {
     name: 'Home',
-    href: '/',
+    href: routes.home,
     icon: <Icon name="home" />,
     shortcut: ['g', 'h'],
     keywords: 'home',
@@ -30,7 +37,7 @@ export const menuList: Array<
   },
   {
     name: 'Articles',
-    href: '/articles',
+    href: routes.articles,
     color: 'green',
     icon: <Icon name="pencil" />,
     shortcut: ['g', 'a'],
@@ -39,7 +46,7 @@ export const menuList: Array<
   },
   {
     name: 'Bookmarks',
-    href: '/bookmarks',
+    href: routes.bookmarks,
     color: 'orange',
     icon: <Icon name="bookmark" />,
     shortcut: ['g', 'b'],
@@ -48,7 +55,7 @@ export const menuList: Array<
   },
   {
     name: 'Watch',
-    href: '/watch',
+    href: routes.watch,
     color: 'purple',
     icon: <Icon name="watch" />,
     shortcut: ['g', 'w'],

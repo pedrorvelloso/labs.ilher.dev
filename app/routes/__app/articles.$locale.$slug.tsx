@@ -9,6 +9,7 @@ import { formatDate } from '~/utils/dates'
 import { locales } from '~/utils/locale'
 import { getSeoArticleMeta } from '~/utils/seo'
 import { getDomainUrl } from '~/utils/misc'
+import { routes } from '~/utils/menu'
 
 import prismCss from '~/styles/prism.css'
 
@@ -78,7 +79,7 @@ const ArticlePage = () => {
             {article.localizations.map(({ locale }) => (
               <Anchor
                 key={locale}
-                href={`/articles/${locale}/${article.slug}`}
+                href={`${routes.articles}/${locale}/${article.slug}`}
                 prefetch="intent"
               >
                 <Tag>Read in {locales[locale]}</Tag>
@@ -99,7 +100,7 @@ const ArticlePage = () => {
             {article.tags.map((tag) => (
               <Anchor
                 key={tag.name}
-                href={`/articles?q=${tag.name}&scope=tags`}
+                href={`${routes.articles}?q=${tag.name}&scope=tags`}
               >
                 <Tag>{tag.name}</Tag>
               </Anchor>

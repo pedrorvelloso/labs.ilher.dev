@@ -3,6 +3,7 @@ import type { Params } from 'react-router'
 import { RootLoaderData } from '~/root'
 import { ArticleLoaderData } from '~/routes/__app/articles.$locale.$slug'
 
+import { routes } from './menu'
 import { getUrl, imageText } from './misc'
 
 type SiteSectionType = 'website' | 'article'
@@ -88,7 +89,7 @@ export const getSeoArticleMeta = ({
       title: data.article.title,
       url: getUrl({
         origin: url.origin,
-        path: `/articles/${params.locale}/${data.article.slug}`,
+        path: `${routes.articles}/${params.locale}/${data.article.slug}`,
       }),
       description: data.article.excerpt,
       image: getSeoImage({

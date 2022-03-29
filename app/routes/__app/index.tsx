@@ -53,7 +53,14 @@ const Index = () => {
           showReadAll
         />
       )}
-      {data.bookmarks && <Bookmarks bookmarks={data.bookmarks} />}
+      {data.bookmarks && (
+        <Bookmarks
+          title="Recent Bookmarks"
+          bookmarks={data.bookmarks}
+          subtitle="Latests bookmarked links."
+          showReadAll
+        />
+      )}
     </>
   )
 }

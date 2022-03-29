@@ -1,4 +1,5 @@
 import { formatDate } from '~/utils/dates'
+import { routes } from '~/utils/menu'
 
 import { BoxAnchor } from './box-anchor'
 import { Tag } from './tag'
@@ -22,7 +23,11 @@ export const Article = ({
   inline,
 }: ArticleProps) => {
   return (
-    <BoxAnchor href={`/articles/en/${slug}`} inline={inline} prefetch="intent">
+    <BoxAnchor
+      href={`${routes.articles}/en/${slug}`}
+      inline={inline}
+      prefetch="intent"
+    >
       <div className="flex items-center gap-x-4 mb-2">
         <Tag>{tag}</Tag>
         <Text
