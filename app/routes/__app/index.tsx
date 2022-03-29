@@ -57,7 +57,7 @@ const Index = () => {
         <Bookmarks
           title="Recent Bookmarks"
           bookmarks={data.bookmarks}
-          subtitle="Latests bookmarked links."
+          subtitle="Latest bookmarked links."
           showReadAll
         />
       )}
