@@ -28,6 +28,7 @@ export const links: LinksFunction = () => [
 export type ArticleLoaderData = {
   article: {
     title: string
+    locale: string
     excerpt: string
     publishedAt?: string | null
     tags: Array<Pick<ArticleTag, 'name'>>
@@ -108,7 +109,7 @@ const ArticlePage = () => {
           </div>
           <Anchor
             href={`https://twitter.com/intent/tweet?${new URLSearchParams({
-              url: `${origin}/blog/${article.slug}`,
+              url: `${origin}${routes.articles}/${article.locale}/${article.slug}`,
               text: tweetMessage,
             })}`}
             target="_blank"

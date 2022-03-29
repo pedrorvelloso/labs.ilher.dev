@@ -21,6 +21,7 @@ export const GetArticle = gql`
   query GetArticle($slug: String!, $locale: [Locale!]!) {
     article(locales: $locale, where: { slug: $slug }) {
       title
+      locale
       publishedAt
       slug
       content
