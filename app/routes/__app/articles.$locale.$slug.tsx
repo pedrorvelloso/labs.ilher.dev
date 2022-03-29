@@ -8,6 +8,7 @@ import { getHeaders, Swr } from '~/utils/headers'
 import { formatDate } from '~/utils/dates'
 import { locales } from '~/utils/locale'
 import { getSeoArticleMeta } from '~/utils/seo'
+import { getDomainUrl } from '~/utils/misc'
 
 import prismCss from '~/styles/prism.css'
 
@@ -17,6 +18,7 @@ import { Grid } from '~/ui/components/grid'
 import { Heading, Text } from '~/ui/components/typograph'
 import { Tag } from '~/ui/components/tag'
 import { Anchor } from '~/ui/components/anchor'
+import { Icon } from '~/ui/components/icon'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: prismCss },
@@ -32,21 +34,23 @@ export type ArticleLoaderData = {
     slug: string
     localizations: Array<{ locale: 'ptbr' | 'en' }>
   }
+  origin: string
 }
 
 export const headers = getHeaders
 
 export const meta = getSeoArticleMeta
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
   const { slug, locale } = params
+  const origin = getDomainUrl(request)
 
   const article = await getArticle(slug as string, locale)
 
   if (!article) throw json({ message: 'not found' }, { status: 404 })
 
   return json<ArticleLoaderData>(
-    { article },
+    { article, origin },
     {
       headers: {
         ...Swr,
@@ -56,7 +60,9 @@ export const loader: LoaderFunction = async ({ params }) => {
 }
 
 const ArticlePage = () => {
-  const { article } = useLoaderData<ArticleLoaderData>()
+  const { article, origin } = useLoaderData<ArticleLoaderData>()
+
+  const tweetMessage = `Read "${article.title}" by @ilher\n\n`
 
   return (
     <>
@@ -99,6 +105,16 @@ const ArticlePage = () => {
               </Anchor>
             ))}
           </div>
+          <Anchor
+            href={`https://twitter.com/intent/tweet?${new URLSearchParams({
+              url: `${origin}/blog/${article.slug}`,
+              text: tweetMessage,
+            })}`}
+            target="_blank"
+            className="col-span-full flex items-center gap-x-2 text-neutral-500 hover:text-neutral-300 transition-colors mt-6"
+          >
+            Tweet this article <Icon name="twitter" />
+          </Anchor>
         </div>
       </Grid>
     </>
