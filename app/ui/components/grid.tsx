@@ -4,7 +4,7 @@ import { PolymorphicComponentProps } from '~/types/polymorphic'
 interface GridOwnProps {
   className?: string
   children?: React.ReactNode
-  featured?: boolean
+  onlyGrid?: boolean
 }
 
 type GridProps<Component extends React.ElementType> = PolymorphicComponentProps<
@@ -20,7 +20,7 @@ export const Grid = <
   children,
   as,
   className,
-  featured = false,
+  onlyGrid = false,
   ...otherProps
 }: GridProps<Component>) => {
   const Tag = as || defaultElemet
@@ -30,7 +30,7 @@ export const Grid = <
       className={clsx(
         'grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 lg:gap-x-8',
         {
-          'max-w-3xl mx-auto px-8': !featured,
+          'max-w-3xl mx-auto px-8': !onlyGrid,
           // 'max-w-3xl mx-auto px-6': featured,
         },
         className,

@@ -1,12 +1,25 @@
 import { useEffect, useState } from 'react'
 import { useTransition } from 'remix'
+import { motion, type Variants } from 'framer-motion'
 import { useKBar } from 'kbar'
+
+import { menuList } from '~/utils/menu'
 
 import { Drawer } from '../components/drawer'
 import { Icon } from '../components/icon'
 import { NavAnchor } from '../components/nav-anchor'
 
 const ICON_SIZE = 20
+
+const list: Variants = {
+  initial: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+}
+
+const item: Variants = {
+  initial: { opacity: 0, x: 400 },
+  visible: { opacity: 1, x: 0, transition: { bounce: false } },
+}
 
 const Menu = ({
   onDrawer,
@@ -19,47 +32,25 @@ const Menu = ({
     'bg-gradient-to-tl from-neutral-900 to-neutral-800 ml-5 my-5 rounded-l-md select-none'
 
   return (
-    <ul className={className}>
-      <li>
-        <NavAnchor
-          href="/"
-          sideAnimation={onDrawer}
-          className={onDrawer ? classNameDrawer : ''}
-        >
-          Home
-        </NavAnchor>
-      </li>
-      <li>
-        <NavAnchor
-          href="/articles"
-          color="green"
-          sideAnimation={onDrawer}
-          className={onDrawer ? classNameDrawer : ''}
-        >
-          Articles
-        </NavAnchor>
-      </li>
-      <li>
-        <NavAnchor
-          href="/watch"
-          color="purple"
-          sideAnimation={onDrawer}
-          className={onDrawer ? classNameDrawer : ''}
-        >
-          Watch
-        </NavAnchor>
-      </li>
-      <li>
-        <NavAnchor
-          href="/about"
-          color="orange"
-          sideAnimation={onDrawer}
-          className={onDrawer ? classNameDrawer : ''}
-        >
-          About
-        </NavAnchor>
-      </li>
-    </ul>
+    <motion.ul
+      variants={list}
+      initial={onDrawer ? 'initial' : 'visible'}
+      animate="visible"
+      className={className}
+    >
+      {menuList.map((menuItem) => (
+        <motion.li variants={item} key={menuItem.href}>
+          <NavAnchor
+            href={menuItem.href}
+            color={menuItem.color}
+            sideAnimation={onDrawer}
+            className={onDrawer ? classNameDrawer : ''}
+          >
+            {menuItem.name}
+          </NavAnchor>
+        </motion.li>
+      ))}
+    </motion.ul>
   )
 }
 

@@ -1,7 +1,7 @@
 import type { LoaderFunction } from 'remix'
 import { buildUrl, setConfig } from 'cloudinary-build-url'
 
-import { getArticleTitle } from '~/server/graphcms.server'
+import { getArticleTitle } from '~/server/cms/graphcms.server'
 
 import { doubleEncode, imageText } from '~/utils/misc'
 import { MaxAge } from '~/utils/headers'
