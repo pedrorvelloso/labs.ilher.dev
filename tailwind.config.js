@@ -5,11 +5,16 @@ module.exports = {
   content: ['./app/**/*.{js,ts,tsx}'],
   theme: {
     extend: {
+      colors: {
+        'south-system': '#ff5100',
+      },
       fontFamily: {
-        sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
+        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
       },
       minHeight: {
-        'index-hero': 'calc(100vh - 87px)',
+        'index-hero': 'calc(100vh - 87px - 80px)',
+        error: '50vh',
       },
       backgroundImage: {
         stack:
@@ -17,7 +22,27 @@ module.exports = {
         'stack-sm':
           'linear-gradient(90deg, rgba(69, 62, 193, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);',
       },
+      typography: (theme) => {
+        return {
+          DEFAULT: {
+            css: [
+              {
+                '> *': {
+                  gridColumn: '1 / -1',
+
+                  [`@media (min-width: ${theme('screens.lg')})`]: {
+                    gridColumn: '2 / span 10',
+                  },
+                },
+              },
+            ],
+          },
+        }
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+  ],
 }

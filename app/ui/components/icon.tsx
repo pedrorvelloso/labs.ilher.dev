@@ -1,27 +1,44 @@
-import { IconBaseProps } from 'react-icons'
+import type { IconBaseProps } from 'react-icons'
 
+import { FaBars, FaTimes, FaNodeJs, FaReact } from 'react-icons/fa'
 import {
-  FaTwitter,
-  FaGithub,
-  FaStar,
-  FaBars,
-  FaTimes,
-  FaNodeJs,
-  FaReact,
-} from 'react-icons/fa'
-import { GoLocation } from 'react-icons/go'
+  FiGithub,
+  FiTwitter,
+  FiStar,
+  FiInstagram,
+  FiCommand,
+  FiTwitch,
+  FiPlayCircle,
+  FiArrowUpRight,
+  FiArrowRight,
+  FiSearch,
+  FiBookmark,
+  FiLinkedin,
+} from 'react-icons/fi'
+import { GoLocation, GoHome, GoPencil } from 'react-icons/go'
 import { SiTypescript } from 'react-icons/si'
 
 const iconMap = {
-  twitter: FaTwitter,
-  github: FaGithub,
-  stargazer: FaStar,
+  twitter: FiTwitter,
+  github: FiGithub,
+  stargazer: FiStar,
   hamburger: FaBars,
   close: FaTimes,
   pin: GoLocation,
   node: FaNodeJs,
   react: FaReact,
   typescript: SiTypescript,
+  home: GoHome,
+  pencil: GoPencil,
+  instagram: FiInstagram,
+  command: FiCommand,
+  twitch: FiTwitch,
+  watch: FiPlayCircle,
+  arrowUpRight: FiArrowUpRight,
+  arrowRight: FiArrowRight,
+  search: FiSearch,
+  bookmark: FiBookmark,
+  linkedin: FiLinkedin,
 }
 
 interface IconProps extends IconBaseProps {

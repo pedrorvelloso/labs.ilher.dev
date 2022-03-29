@@ -28,7 +28,7 @@ export const Drawer: React.FC<DrawerProps> = ({ children, isOpen }) => {
             bounce: false,
             duration: 0.15,
           }}
-          className="fixed top-0 pt-[87px] h-screen w-screen visible lg:invisible bg-neutral-900 z-20 border-b border-neutral-800"
+          className="overflow-x-hidden fixed top-0 pt-[87px] pb-20 h-screen w-screen visible lg:invisible bg-neutral-900 z-20 border-b border-neutral-800 overflow-auto"
         >
           {children}
         </motion.div>
