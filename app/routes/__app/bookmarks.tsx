@@ -6,6 +6,7 @@ import { getBookmarks } from '~/server/cms/graphcms.server'
 
 import { getHeaders, Swr } from '~/utils/headers'
 import { getPageSeo } from '~/utils/seo'
+import { pageTitles } from '~/utils/misc'
 
 import { Bookmarks } from '~/ui/compositions/bookmarks'
 
@@ -14,7 +15,10 @@ type BookmarksLoaderData = {
 }
 
 export const meta: MetaFunction = ({ parentsData }) =>
-  getPageSeo({ parentsData, seo: { title: 'Bookmarks' } })
+  getPageSeo({
+    parentsData,
+    seo: { title: pageTitles.bookmarks, imageTextKey: 'bookmarks' },
+  })
 
 export const headers = getHeaders
 

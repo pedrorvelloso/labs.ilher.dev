@@ -31,6 +31,9 @@ export const doubleEncode = (s: string) => {
   return encodeURIComponent(encodeURIComponent(s))
 }
 
-export const imageText = {
+export const pageTitles = {
   home: 'Pedro Reis — Fullstack developer',
+  articles: 'Pedro Reis — Articles',
+  bookmarks: 'Pedro Reis — Bookmarks',
+  watch: 'Pedro Reis — Watch',
 }

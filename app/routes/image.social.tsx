@@ -3,7 +3,7 @@ import { buildUrl, setConfig } from 'cloudinary-build-url'
 
 import { getArticleTitle } from '~/server/cms/graphcms.server'
 
-import { doubleEncode, imageText } from '~/utils/misc'
+import { doubleEncode, pageTitles } from '~/utils/misc'
 import { MaxAge } from '~/utils/headers'
 
 setConfig({
@@ -17,15 +17,15 @@ export const loader: LoaderFunction = async ({ request }) => {
   const from = requestUrl.searchParams.get('from')
   const locale = requestUrl.searchParams.get('locale') || 'en'
 
-  let text = imageText.home
+  let text = pageTitles.home
 
   if (type === 'website' && from)
-    text = imageText[from as keyof typeof imageText] ?? imageText.home
+    text = pageTitles[from as keyof typeof pageTitles] ?? pageTitles.home
 
   if (type === 'article' && from) {
     const result = await getArticleTitle(from, locale)
 
-    text = result ? result.title : imageText.home
+    text = result ? result.title : pageTitles.home
   }
 
   const url = buildUrl('social-image-labs', {
