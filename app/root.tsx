@@ -77,10 +77,9 @@ export default function App() {
       {env('production') && (
         <>
           <script
-            async
             src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
           />
-          <script async id="gtag-init" src="/scripts/analytics" />
+          <script id="gtag-init" src="/scripts/analytics" />
         </>
       )}
       <body className="bg-neutral-900 text-neutral-300">
