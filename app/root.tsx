@@ -76,9 +76,7 @@ export default function App() {
       </head>
       {env('production') && (
         <>
-          <script
-            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-          />
+          <script src="https://www.googletagmanager.com/gtag/js?id=G-GK57XT0TG7" />
           <script id="gtag-init" src="/scripts/analytics" />
         </>
       )}
