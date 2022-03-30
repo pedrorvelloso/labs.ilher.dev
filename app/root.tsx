@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   Links,
   LiveReload,
@@ -13,6 +14,7 @@ import type { MetaFunction, LinksFunction, LoaderFunction } from 'remix'
 
 import { env, getDomainUrl, getUrl } from './utils/misc'
 import { getSeo } from './utils/seo'
+import * as gtag from '~/utils/gtags.client'
 
 import nProgressCss from '~/styles/nprogress.css'
 import tailwindCss from '~/styles/tailwind.css'
@@ -55,6 +57,12 @@ export const loader: LoaderFunction = ({ request }) => {
 }
 
 export default function App() {
+  const location = useLocation()
+
+  useEffect(() => {
+    gtag.pageview(location.pathname)
+  }, [location])
+
   return (
     <html lang="en">
       <head>
@@ -66,17 +74,17 @@ export default function App() {
           <link rel="stylesheet" href={noScriptCss} />
         </noscript>
       </head>
-      {env('production') && (
-        <>
-          <script src="https://www.googletagmanager.com/gtag/js?id=G-GK57XT0TG7" />
-          <script id="gtag-init" src="/scripts/analytics" />
-        </>
-      )}
       <body className="bg-neutral-900 text-neutral-300">
         <Outlet />
         <Progress />
         <ScrollRestoration />
         <Scripts />
+        {env('production') && (
+          <>
+            <script src="https://www.googletagmanager.com/gtag/js?id=G-GK57XT0TG7" />
+            <script id="gtag-init" src="/scripts/analytics" />
+          </>
+        )}
         <LiveReload />
       </body>
     </html>
