@@ -102,3 +102,21 @@ export const getSeoArticleMeta = ({
     }),
   }
 }
+
+interface GetPageSeoOptions {
+  parentsData: any
+  seo: Partial<GetSeoOptions>
+}
+
+export const getPageSeo = ({ parentsData, seo }: GetPageSeoOptions) => {
+  const { url } = parentsData.root as RootLoaderData
+
+  return {
+    ...getSeo({
+      ...seo,
+      title: seo.title ? `Pedro Reis — ${seo.title}` : undefined,
+      origin: url.origin,
+      url: getUrl({ origin: url.origin, path: url.path }),
+    }),
+  }
+}
