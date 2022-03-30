@@ -9,6 +9,10 @@ export const getEnv = (key: string, devValue = `${key}-dev`) => {
   return value
 }
 
+export const env = (enviroment: 'production' | 'development') => {
+  return process.env.NODE_ENV === enviroment
+}
+
 export const getDomainUrl = (request: Request) => {
   const host = request.headers.get('host')
 
@@ -27,6 +31,9 @@ export const doubleEncode = (s: string) => {
   return encodeURIComponent(encodeURIComponent(s))
 }
 
-export const imageText = {
+export const pageTitles = {
   home: 'Pedro Reis — Fullstack developer',
+  articles: 'Pedro Reis — Articles',
+  bookmarks: 'Pedro Reis — Bookmarks',
+  watch: 'Pedro Reis — Watch',
 }

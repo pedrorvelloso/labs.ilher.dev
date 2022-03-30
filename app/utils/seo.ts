@@ -4,7 +4,7 @@ import { RootLoaderData } from '~/root'
 import { ArticleLoaderData } from '~/routes/__app/articles.$locale.$slug'
 
 import { routes } from './menu'
-import { getUrl, imageText } from './misc'
+import { getUrl, pageTitles } from './misc'
 
 type SiteSectionType = 'website' | 'article'
 
@@ -14,7 +14,7 @@ interface GetSeoOptions {
   keywords?: string
   image?: string
   type?: SiteSectionType
-  imageTextKey?: keyof typeof imageText
+  imageTextKey?: keyof typeof pageTitles
   url: string
   origin: string
 }
@@ -99,6 +99,24 @@ export const getSeoArticleMeta = ({
         locale: params.locale,
       }),
       type: 'article',
+    }),
+  }
+}
+
+interface GetPageSeoOptions {
+  parentsData: any
+  seo: Partial<GetSeoOptions>
+}
+
+export const getPageSeo = ({ parentsData, seo }: GetPageSeoOptions) => {
+  const { url } = parentsData.root as RootLoaderData
+
+  return {
+    ...getSeo({
+      ...seo,
+      title: seo.title ? seo.title : undefined,
+      origin: url.origin,
+      url: getUrl({ origin: url.origin, path: url.path }),
     }),
   }
 }
