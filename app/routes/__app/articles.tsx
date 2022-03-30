@@ -1,9 +1,11 @@
-import type { LoaderFunction } from 'remix'
+import type { LoaderFunction, MetaFunction } from 'remix'
 import { useLoaderData, json, Form } from 'remix'
 
 import type { GetArticlesQuery } from '~/generated/graphql'
 
 import { getHeaders, Swr } from '~/utils/headers'
+import { getPageSeo } from '~/utils/seo'
+import { pageTitles } from '~/utils/misc'
 import { getArticles } from '~/server/cms/graphcms.server'
 
 import { Articles } from '~/ui/compositions/articles'
@@ -16,6 +18,12 @@ type ArticlesLoaderData = {
   term?: string
   scope: 'all' | 'tags'
 }
+
+export const meta: MetaFunction = ({ parentsData }) =>
+  getPageSeo({
+    parentsData,
+    seo: { title: pageTitles.articles, imageTextKey: 'articles' },
+  })
 
 export const headers = getHeaders
 
