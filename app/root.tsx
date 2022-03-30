@@ -14,7 +14,7 @@ import type { MetaFunction, LinksFunction, LoaderFunction } from 'remix'
 
 import { env, getDomainUrl, getUrl } from './utils/misc'
 import { getSeo } from './utils/seo'
-import * as gtag from '~/utils/gtags.client'
+import * as gtag from '~/utils/gtags'
 
 import nProgressCss from '~/styles/nprogress.css'
 import tailwindCss from '~/styles/tailwind.css'
@@ -81,7 +81,9 @@ export default function App() {
         <Scripts />
         {env('production') && (
           <>
-            <script src="https://www.googletagmanager.com/gtag/js?id=G-GK57XT0TG7" />
+            <script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+            />
             <script id="gtag-init" src="/scripts/analytics" />
           </>
         )}
