@@ -94,12 +94,12 @@ export const getArticleTitle = async (
   return data.article
 }
 
-export const getHomeInfo = async (
-  stage: 'DRAFT' | 'PUBLISHED' = 'PUBLISHED',
-): Promise<GetHomeInfoQuery> => {
-  const result = await fetchFromGraphQL(GetHomeInfo, { stage })
+export const getHomeInfo = async (): Promise<GetHomeInfoQuery> => {
+  const result = await fetchFromGraphQL(GetHomeInfo)
 
   const { data, errors } = result
+
+  console.log(errors)
 
   if (errors) throw new Error('error fetching home info')
 
@@ -111,9 +111,8 @@ export const getHomeInfo = async (
 
 export const getBookmarks = async (
   first = 3,
-  stage: 'DRAFT' | 'PUBLISHED' = 'PUBLISHED',
 ): Promise<GetBookmarksQuery['bookmarks']> => {
-  const result = await fetchFromGraphQL(GetBookmarks, { first, stage })
+  const result = await fetchFromGraphQL(GetBookmarks, { first })
 
   const { data, errors } = result
 
@@ -122,11 +121,8 @@ export const getBookmarks = async (
   return data.bookmarks
 }
 
-export const getWatch = async (
-  first = 3,
-  stage: 'DRAFT' | 'PUBLISHED' = 'PUBLISHED',
-): Promise<GetWatchQuery['links']> => {
-  const result = await fetchFromGraphQL(GetWatch, { first, stage })
+export const getWatch = async (first = 3): Promise<GetWatchQuery['links']> => {
+  const result = await fetchFromGraphQL(GetWatch, { first })
 
   const { data, errors } = result
 

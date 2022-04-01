@@ -46,13 +46,8 @@ export const GetArticleTitle = gql`
 `
 
 export const GetHomeInfo = gql`
-  query GetHomeInfo($stage: Stage!) {
-    articles(
-      first: 3
-      stage: $stage
-      orderBy: publishedAt_DESC
-      where: { featured: true }
-    ) {
+  query GetHomeInfo {
+    articles(first: 3, orderBy: publishedAt_DESC, where: { featured: true }) {
       title
       excerpt
       slug
@@ -64,7 +59,6 @@ export const GetHomeInfo = gql`
     }
     bookmarks: externalUrls(
       first: 5
-      stage: $stage
       orderBy: publishedAt_DESC
       where: { type: bookmark }
     ) {
@@ -75,9 +69,8 @@ export const GetHomeInfo = gql`
 `
 
 export const GetBookmarks = gql`
-  query GetBookmarks($stage: Stage!, $limit: Int) {
+  query GetBookmarks($limit: Int) {
     bookmarks: externalUrls(
-      stage: $stage
       first: $limit
       orderBy: publishedAt_DESC
       where: { type: bookmark }
@@ -89,8 +82,8 @@ export const GetBookmarks = gql`
 `
 
 export const GetWatch = gql`
-  query GetWatch($stage: Stage!, $first: Int) {
-    links: externalUrls(where: { type: stream }, stage: $stage, first: $first) {
+  query GetWatch($first: Int) {
+    links: externalUrls(where: { type: stream }, first: $first) {
       title
       url
       content
