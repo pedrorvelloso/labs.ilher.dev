@@ -7,7 +7,7 @@ export interface NavAnchorProps extends Omit<AnchorProps, 'isNav'> {
   sideAnimation?: boolean
 }
 
-export const NavAnchor: React.FC<NavAnchorProps> = ({
+export const NavAnchor: React.FC<React.PropsWithChildren<NavAnchorProps>> = ({
   children,
   color = 'indigo',
   sideAnimation,

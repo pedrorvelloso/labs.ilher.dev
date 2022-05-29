@@ -1,5 +1,6 @@
-import type { LoaderFunction, MetaFunction } from 'remix'
-import { useLoaderData, json, Form } from 'remix'
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
+import { useLoaderData, Form } from '@remix-run/react'
 
 import type { GetArticlesQuery } from '~/generated/graphql'
 

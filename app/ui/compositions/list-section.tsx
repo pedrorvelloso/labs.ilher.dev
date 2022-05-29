@@ -9,12 +9,9 @@ interface ListSectionProps {
   className?: string
 }
 
-export const ListSection: React.FC<ListSectionProps> = ({
-  title,
-  subtitle,
-  children,
-  className,
-}) => {
+export const ListSection: React.FC<
+  React.PropsWithChildren<ListSectionProps>
+> = ({ title, subtitle, children, className }) => {
   return (
     <>
       <Heading

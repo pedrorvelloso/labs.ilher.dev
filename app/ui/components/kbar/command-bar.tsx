@@ -9,7 +9,9 @@ import {
 
 import { Result } from './result'
 
-export const CommandBar: React.FC = ({ children }) => {
+export const CommandBar: React.FC<React.PropsWithChildren<unknown>> = ({
+  children,
+}) => {
   return (
     <>
       <KBarPortal>

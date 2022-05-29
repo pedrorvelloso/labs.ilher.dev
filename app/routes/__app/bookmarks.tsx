@@ -1,6 +1,7 @@
 import type { GetBookmarksQuery } from '~/generated/graphql'
-import type { LoaderFunction, MetaFunction } from 'remix'
-import { json, useLoaderData } from 'remix'
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
 
 import { getBookmarks } from '~/server/cms/graphcms.server'
 

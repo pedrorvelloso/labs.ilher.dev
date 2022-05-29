@@ -1,5 +1,5 @@
-import type { NavLinkProps } from 'remix'
-import { Link, NavLink } from 'remix'
+import type { NavLinkProps } from '@remix-run/react'
+import { Link, NavLink } from '@remix-run/react'
 
 export interface AnchorProps {
   href: string
@@ -9,7 +9,7 @@ export interface AnchorProps {
   isNav?: boolean
 }
 
-export const Anchor: React.FC<AnchorProps> = ({
+export const Anchor: React.FC<React.PropsWithChildren<AnchorProps>> = ({
   href,
   className,
   prefetch,

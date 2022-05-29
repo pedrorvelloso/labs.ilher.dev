@@ -99,8 +99,6 @@ export const getHomeInfo = async (): Promise<GetHomeInfoQuery> => {
 
   const { data, errors } = result
 
-  console.log(errors)
-
   if (errors) throw new Error('error fetching home info')
 
   return {

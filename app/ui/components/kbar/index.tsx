@@ -1,4 +1,4 @@
-import { useNavigate } from 'remix'
+import { useNavigate } from '@remix-run/react'
 import { useEffect } from 'react'
 import { KBarProvider, useKBar } from 'kbar'
 
@@ -36,7 +36,9 @@ export const KBarActions = () => {
   return null
 }
 
-export const KBarAppProvider: React.FC = ({ children }) => {
+export const KBarAppProvider: React.FC<React.PropsWithChildren<unknown>> = ({
+  children,
+}) => {
   return (
     <KBarProvider
       actions={[]}

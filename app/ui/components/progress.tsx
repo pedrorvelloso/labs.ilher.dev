@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useTransition } from 'remix'
+import { useTransition } from '@remix-run/react'
 
 import NProgress from 'nprogress'
 

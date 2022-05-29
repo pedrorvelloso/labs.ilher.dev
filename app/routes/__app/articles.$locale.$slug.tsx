@@ -1,5 +1,6 @@
-import type { LoaderFunction, LinksFunction } from 'remix'
-import { json, useLoaderData } from 'remix'
+import type { LinksFunction, LoaderFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
 
 import type { Tag as ArticleTag } from '~/generated/graphql'
 import { getArticle } from '~/server/cms/graphcms.server'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useTransition } from 'remix'
+import { useTransition } from '@remix-run/react'
 import { motion, type Variants } from 'framer-motion'
 import { useKBar } from 'kbar'
 

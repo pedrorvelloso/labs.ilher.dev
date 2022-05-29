@@ -8,7 +8,7 @@ interface BoxAnchorProps extends Pick<AnchorProps, 'target' | 'prefetch'> {
   className?: string
 }
 
-export const BoxAnchor: React.FC<BoxAnchorProps> = ({
+export const BoxAnchor: React.FC<React.PropsWithChildren<BoxAnchorProps>> = ({
   href,
   inline,
   children,

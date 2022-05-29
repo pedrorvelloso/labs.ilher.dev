@@ -6,11 +6,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  json,
   useCatch,
   useLocation,
-} from 'remix'
-import type { MetaFunction, LinksFunction, LoaderFunction } from 'remix'
+} from '@remix-run/react'
+import { json } from '@remix-run/node'
+import type {
+  MetaFunction,
+  LinksFunction,
+  LoaderFunction,
+} from '@remix-run/node'
 
 import { env, getDomainUrl, getUrl } from './utils/misc'
 import { getSeo } from './utils/seo'
