@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import React from 'react'
 
 import { Text } from './typograph'
 
@@ -6,7 +7,10 @@ interface TagProps {
   className?: string
 }
 
-export const Tag: React.FC<TagProps> = ({ className, children }) => {
+export const Tag = ({
+  className,
+  children,
+}: React.PropsWithChildren<TagProps>) => {
   return (
     <Text
       size="xs"

@@ -1,5 +1,6 @@
-import type { LoaderFunction } from 'remix'
-import { useLoaderData, json } from 'remix'
+import type { LoaderFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
 
 import type { GetHomeInfoQuery } from '~/generated/graphql'
 import { getHomeInfo } from '~/server/cms/graphcms.server'

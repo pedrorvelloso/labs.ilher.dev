@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 const minMax = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1) + min)
 
-const Particle: React.FC = ({ children }) => (
+const Particle: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
   <motion.span
     animate={{
       y: [

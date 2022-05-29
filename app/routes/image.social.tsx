@@ -1,4 +1,4 @@
-import type { LoaderFunction } from 'remix'
+import type { LoaderFunction } from '@remix-run/node'
 import { buildUrl, setConfig } from 'cloudinary-build-url'
 
 import { getArticleTitle } from '~/server/cms/graphcms.server'

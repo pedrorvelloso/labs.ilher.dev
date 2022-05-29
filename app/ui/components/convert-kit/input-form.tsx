@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { useFetcher } from 'remix'
+import { useFetcher } from '@remix-run/react'
 import { motion } from 'framer-motion'
 
 import type { ConvertKitSubscriptionResponse } from '~/types/convertKit'

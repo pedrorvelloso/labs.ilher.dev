@@ -5,7 +5,10 @@ interface DrawerProps {
   isOpen?: boolean
 }
 
-export const Drawer: React.FC<DrawerProps> = ({ children, isOpen }) => {
+export const Drawer: React.FC<React.PropsWithChildren<DrawerProps>> = ({
+  children,
+  isOpen,
+}) => {
   useEffect(() => {
     const body = document.getElementsByTagName('body')[0]
 

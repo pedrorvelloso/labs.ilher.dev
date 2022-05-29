@@ -1,4 +1,4 @@
-import type { LoaderFunction } from 'remix'
+import type { LoaderFunction } from '@remix-run/node'
 import * as gtag from '~/utils/gtags'
 
 export const loader: LoaderFunction = () => {

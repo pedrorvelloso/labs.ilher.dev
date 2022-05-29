@@ -1,4 +1,4 @@
-import { Outlet } from 'remix'
+import { Outlet } from '@remix-run/react'
 
 import { KBarAppProvider } from '~/ui/components/kbar'
 
