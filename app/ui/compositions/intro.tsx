@@ -17,6 +17,7 @@ export const Intro = () => {
           src="/images/avatar.png"
           alt="Pedro Reis"
           className="rounded-full w-[80px] md:w-[120px] md:mb-0"
+          loading="lazy"
         />
       </div>
     </Grid>

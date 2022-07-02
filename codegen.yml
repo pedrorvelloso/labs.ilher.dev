@@ -1,8 +1,13 @@
 overwrite: true
-schema: "https://api-sa-east-1.graphcms.com/v2/cl0kirbpe51p101xkdri5ek3g/master"
+schema:
+  - ${GCMS_URL}
 documents: 'app/**/*.{ts,tsx,gql,graphql}'
 generates:
   app/generated/graphql.ts:
+    config:
+      avoidOptionals: true
+      useImplementingTypes: true
+      useTypeImports: true
     plugins:
       - "typescript"
       - "typescript-operations"

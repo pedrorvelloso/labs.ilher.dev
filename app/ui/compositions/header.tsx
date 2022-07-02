@@ -69,13 +69,13 @@ export const Header = () => {
         <nav className="max-w-3xl mx-auto px-8 flex items-center justify-between h-full">
           <Menu className="hidden lg:flex text-neutral-400 h-full" />
           <button
-            className="py-3 pr-3"
+            className="py-3 pr-3 flex lg:hidden"
             onClick={() => setDrawerOpen((prev) => !prev)}
           >
             <Icon
               name={drawerOpen ? 'close' : 'hamburger'}
               size={ICON_SIZE}
-              className="text-neutral-400 flex lg:hidden"
+              className="text-neutral-400"
             />
           </button>
           <button
