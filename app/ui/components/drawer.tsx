@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Portal } from '@headlessui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 interface DrawerProps {
@@ -23,7 +24,8 @@ export const Drawer: React.FC<React.PropsWithChildren<DrawerProps>> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <Portal
+          as={motion.div}
           initial={{ opacity: 0, y: -100 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -100 }}
@@ -34,7 +36,7 @@ export const Drawer: React.FC<React.PropsWithChildren<DrawerProps>> = ({
           className="overflow-x-hidden fixed top-0 pt-[87px] pb-20 h-screen w-screen visible lg:invisible bg-neutral-900 z-20 border-b border-neutral-800 overflow-auto"
         >
           {children}
-        </motion.div>
+        </Portal>
       )}
     </AnimatePresence>
   )
