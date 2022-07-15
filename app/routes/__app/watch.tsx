@@ -1,7 +1,6 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import type { MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import type { GetWatchQuery } from '~/generated/graphql'
 
 import { getWatch } from '~/server/cms/graphcms.server'
 
@@ -11,10 +10,6 @@ import { WatchList } from '~/ui/compositions/watch-list'
 import { getPageSeo } from '~/utils/seo'
 import { pageTitles } from '~/utils/misc'
 
-type WatchPageLoaderData = {
-  links: GetWatchQuery['links']
-}
-
 export const meta: MetaFunction = ({ parentsData }) =>
   getPageSeo({
     parentsData,
@@ -23,10 +18,10 @@ export const meta: MetaFunction = ({ parentsData }) =>
 
 export const headers = getHeaders
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const links = await getWatch()
 
-  return json<WatchPageLoaderData>(
+  return json(
     { links },
     {
       headers: {
@@ -37,7 +32,7 @@ export const loader: LoaderFunction = async () => {
 }
 
 const WatchPage = () => {
-  const { links } = useLoaderData<WatchPageLoaderData>()
+  const { links } = useLoaderData<typeof loader>()
 
   return <WatchList links={links} />
 }

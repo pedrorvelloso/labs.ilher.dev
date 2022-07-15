@@ -1,7 +1,6 @@
 import type { Params } from 'react-router'
 
 import { RootLoaderData } from '~/root'
-import { ArticleLoaderData } from '~/routes/__app/articles.$locale.$slug'
 
 import { routes } from './menu'
 import { getUrl, pageTitles } from './misc'
@@ -66,7 +65,13 @@ export const getSeoImage = ({
 }
 
 interface SeoArticleMetaOptions {
-  data: ArticleLoaderData
+  data: {
+    article: {
+      title: string
+      slug: string
+      excerpt: string
+    }
+  }
   parentsData: {
     root: RootLoaderData
   }

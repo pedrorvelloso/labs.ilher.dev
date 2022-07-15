@@ -1,8 +1,7 @@
-import type { LinksFunction, LoaderFunction } from '@remix-run/node'
+import type { LinksFunction, LoaderArgs } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 
-import type { Tag as ArticleTag } from '~/generated/graphql'
 import { getArticle } from '~/server/cms/graphcms.server'
 
 import { getHeaders, Swr } from '~/utils/headers'
@@ -26,25 +25,11 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: prismCss },
 ]
 
-export type ArticleLoaderData = {
-  article: {
-    title: string
-    locale: string
-    excerpt: string
-    publishedAt?: string | null
-    tags: Array<Pick<ArticleTag, 'name'>>
-    content: string
-    slug: string
-    localizations: Array<{ locale: 'ptbr' | 'en' }>
-  }
-  origin: string
-}
-
 export const headers = getHeaders
 
 export const meta = getSeoArticleMeta
 
-export const loader: LoaderFunction = async ({ params, request }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const { slug, locale } = params
   const origin = getDomainUrl(request)
 
@@ -52,7 +37,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
   if (!article) throw json({ message: 'not found' }, { status: 404 })
 
-  return json<ArticleLoaderData>(
+  return json(
     { article, origin },
     {
       headers: {
@@ -63,7 +48,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 }
 
 const ArticlePage = () => {
-  const { article, origin } = useLoaderData<ArticleLoaderData>()
+  const { article, origin } = useLoaderData<typeof loader>()
 
   const tweetMessage = `Read "${article.title}" by @ilher\n\n`
 

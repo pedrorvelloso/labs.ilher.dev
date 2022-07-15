@@ -1,8 +1,6 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import type { LoaderArgs, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData, Form } from '@remix-run/react'
-
-import type { GetArticlesQuery } from '~/generated/graphql'
 
 import { getHeaders, Swr } from '~/utils/headers'
 import { getPageSeo } from '~/utils/seo'
@@ -14,12 +12,6 @@ import { Grid } from '~/ui/components/grid'
 import { Icon } from '~/ui/components/icon'
 import { Input } from '~/ui/components/input'
 
-type ArticlesLoaderData = {
-  articles: GetArticlesQuery['articles']
-  term?: string
-  scope: 'all' | 'tags'
-}
-
 export const meta: MetaFunction = ({ parentsData }) =>
   getPageSeo({
     parentsData,
@@ -28,7 +20,7 @@ export const meta: MetaFunction = ({ parentsData }) =>
 
 export const headers = getHeaders
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url)
   const query = url.searchParams.get('q') ?? undefined
   const scope = (url.searchParams.get('scope') as 'all' | 'tags') ?? 'all'
@@ -39,7 +31,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     ...Swr,
   }
 
-  return json<ArticlesLoaderData>(
+  return json(
     { articles, term: query, scope },
     {
       headers,
@@ -48,7 +40,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 const Blog = () => {
-  const data = useLoaderData<ArticlesLoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <>

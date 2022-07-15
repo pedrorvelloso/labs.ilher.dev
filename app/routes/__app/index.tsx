@@ -1,8 +1,6 @@
-import type { LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 
-import type { GetHomeInfoQuery } from '~/generated/graphql'
 import { getHomeInfo } from '~/server/cms/graphcms.server'
 
 import { getHeaders, Swr } from '~/utils/headers'
@@ -11,14 +9,9 @@ import { Articles } from '~/ui/compositions/articles'
 import { Intro } from '~/ui/compositions/intro'
 import { Bookmarks } from '~/ui/compositions/bookmarks'
 
-type IndexLoaderData = {
-  articles: GetHomeInfoQuery['articles'] | null
-  bookmarks: GetHomeInfoQuery['bookmarks'] | null
-}
-
 export const headers = getHeaders
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const { articles, bookmarks } = await getHomeInfo()
 
   const headers = {
@@ -26,22 +19,19 @@ export const loader: LoaderFunction = async () => {
   }
 
   try {
-    return json<IndexLoaderData>(
+    return json(
       { articles, bookmarks },
       {
         headers,
       },
     )
   } catch {
-    return json<IndexLoaderData>(
-      { articles: null, bookmarks: null },
-      { headers },
-    )
+    return json({ articles: null, bookmarks: null }, { headers })
   }
 }
 
 const Index = () => {
-  const data = useLoaderData<IndexLoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <>

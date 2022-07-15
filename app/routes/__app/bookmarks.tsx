@@ -1,5 +1,4 @@
-import type { GetBookmarksQuery } from '~/generated/graphql'
-import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import type { MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 
@@ -11,10 +10,6 @@ import { pageTitles } from '~/utils/misc'
 
 import { Bookmarks } from '~/ui/compositions/bookmarks'
 
-type BookmarksLoaderData = {
-  bookmarks: GetBookmarksQuery['bookmarks']
-}
-
 export const meta: MetaFunction = ({ parentsData }) =>
   getPageSeo({
     parentsData,
@@ -23,14 +18,14 @@ export const meta: MetaFunction = ({ parentsData }) =>
 
 export const headers = getHeaders
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const bookmarks = await getBookmarks(10)
 
   const headers = {
     ...Swr,
   }
 
-  return json<BookmarksLoaderData>(
+  return json(
     { bookmarks },
     {
       headers,
@@ -39,7 +34,7 @@ export const loader: LoaderFunction = async () => {
 }
 
 const BookmarksPage = () => {
-  const data = useLoaderData<BookmarksLoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return <Bookmarks bookmarks={data.bookmarks} />
 }
