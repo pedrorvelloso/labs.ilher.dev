@@ -1,11 +1,11 @@
 import type { NavLinkProps } from '@remix-run/react'
 import { Link, NavLink } from '@remix-run/react'
+import { isExternal } from '~/utils/misc'
 
 export interface AnchorProps {
   href: string
   className?: string | NavLinkProps['className']
   prefetch?: 'intent' | 'none' | 'render'
-  target?: React.HTMLAttributeAnchorTarget
   isNav?: boolean
 }
 
@@ -13,18 +13,17 @@ export const Anchor: React.FC<React.PropsWithChildren<AnchorProps>> = ({
   href,
   className,
   prefetch,
-  target,
   children,
   isNav,
 }) => {
-  const isExternal = href.startsWith('http://') || href.startsWith('https://')
+  const isExternalUrl = isExternal(href)
 
-  if (isExternal)
+  if (isExternalUrl)
     return (
       <a
         href={href}
-        rel={target === '_blank' ? 'noreferrer noopener' : undefined}
-        target={target}
+        rel="noreferrer noopener"
+        target="_blank"
         className={className?.toString()}
       >
         {children}

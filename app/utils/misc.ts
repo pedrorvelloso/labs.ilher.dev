@@ -37,3 +37,6 @@ export const pageTitles = {
   bookmarks: 'Pedro Reis — Bookmarks',
   watch: 'Pedro Reis — Watch',
 }
+
+export const isExternal = (href: string) =>
+  href.startsWith('http://') || href.startsWith('https://')

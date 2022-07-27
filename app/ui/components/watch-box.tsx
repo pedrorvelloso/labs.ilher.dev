@@ -9,12 +9,7 @@ interface WatchBoxProps {
 
 export const WatchBox = ({ content, title, url }: WatchBoxProps) => {
   return (
-    <BoxAnchor
-      href={url}
-      inline
-      target="_blank"
-      className="flex items-center justify-between"
-    >
+    <BoxAnchor href={url} inline className="flex items-center justify-between">
       <div className="flex flex-col gap-y-2 w-[85%] lg:w-fit">
         <span className="text-neutral-200 group-hover:text-neutral-800 flex gap-x-2 items-center">
           {title} <Icon name={url.includes('twitch') ? 'twitch' : 'watch'} />

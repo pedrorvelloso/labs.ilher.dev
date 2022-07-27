@@ -3,7 +3,7 @@ import { useTransition } from '@remix-run/react'
 import { motion, type Variants } from 'framer-motion'
 import { useKBar } from 'kbar'
 
-import { menuList } from '~/utils/menu'
+import { type NavMenuItem } from '~/utils/menu'
 
 import { Drawer } from '../components/drawer'
 import { Icon } from '../components/icon'
@@ -21,13 +21,13 @@ const item: Variants = {
   visible: { opacity: 1, x: 0, transition: { bounce: false } },
 }
 
-const Menu = ({
-  onDrawer,
-  className,
-}: {
+interface MenuProps {
   onDrawer?: boolean
   className?: string
-}) => {
+  routes: Array<NavMenuItem>
+}
+
+const Menu = ({ onDrawer, className, routes }: MenuProps) => {
   const classNameDrawer =
     'bg-gradient-to-tl from-neutral-900 to-neutral-800 ml-5 my-5 rounded-l-md select-none'
 
@@ -38,7 +38,7 @@ const Menu = ({
       animate="visible"
       className={className}
     >
-      {menuList.map((menuItem) => (
+      {routes.map((menuItem) => (
         <motion.li variants={item} key={menuItem.href}>
           <NavAnchor
             href={menuItem.href}
@@ -54,7 +54,11 @@ const Menu = ({
   )
 }
 
-export const Header = () => {
+interface HeaderProps {
+  routes: MenuProps['routes']
+}
+
+export const Header = ({ routes }: HeaderProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const transition = useTransition()
   const kbar = useKBar()
@@ -67,7 +71,10 @@ export const Header = () => {
     <>
       <div className="h-[87px] border-b border-neutral-800 z-50 relative bg-neutral-900">
         <nav className="max-w-3xl mx-auto px-8 flex items-center justify-between h-full">
-          <Menu className="hidden lg:flex text-neutral-400 h-full" />
+          <Menu
+            className="hidden lg:flex text-neutral-400 h-full"
+            routes={routes}
+          />
           <button
             className="py-3 pr-3 flex lg:hidden"
             onClick={() => setDrawerOpen((prev) => !prev)}
@@ -87,7 +94,7 @@ export const Header = () => {
         </nav>
       </div>
       <Drawer isOpen={drawerOpen}>
-        <Menu onDrawer className="text-neutral-400" />
+        <Menu onDrawer className="text-neutral-400" routes={routes} />
       </Drawer>
     </>
   )

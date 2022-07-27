@@ -1,3 +1,5 @@
+import { createClient } from '@urql/core'
+
 import type {
   GetArticlesQuery,
   GetArticleQuery,
@@ -5,8 +7,10 @@ import type {
   GetHomeInfoQuery,
   GetBookmarksQuery,
   GetWatchQuery,
+  GetLinkQuery,
+  GetLinksQuery,
 } from '~/generated/graphql'
-import { fetchFromGraphQL } from '~/utils/graphql'
+import { getEnv } from '~/utils/misc'
 
 import { buildHtml } from '../markdown.server'
 
@@ -16,8 +20,19 @@ import {
   GetArticleTitle,
   GetBookmarks,
   GetHomeInfo,
+  GetLink,
+  GetLinks,
   GetWatch,
 } from './graphql'
+
+const graphCmsClient = createClient({
+  url: getEnv('GCMS_URL'),
+  fetchOptions: {
+    headers: {
+      Authorization: `Bearer ${getEnv('GCMS_TOKEN')}`,
+    },
+  },
+})
 
 export const getArticlesWhere = (
   query?: string,
@@ -44,14 +59,16 @@ export const getArticles = async (
   // otherwise filters only base on tags
   const where = getArticlesWhere(options?.query, options?.scope)
 
-  const result = await fetchFromGraphQL(GetArticles, {
-    first,
-    where,
-  })
+  const result = await graphCmsClient
+    .query<GetArticlesQuery>(GetArticles, {
+      first,
+      where,
+    })
+    .toPromise()
 
-  const { data, errors } = result
+  const { data, error } = result
 
-  if (errors) throw new Error('error fetching artitcles')
+  if (error || !data) throw new Error('error fetching artitcles')
 
   return data.articles
 }
@@ -61,14 +78,17 @@ export const getArticle = async (
   locale?: string | null,
 ): Promise<GetArticleQuery['article']> => {
   const language = locale || 'en'
-  const result = await fetchFromGraphQL(GetArticle, {
-    slug,
-    locale: [language],
-  })
 
-  const { data, errors } = result
+  const result = await graphCmsClient
+    .query<GetArticleQuery>(GetArticle, {
+      slug,
+      locale: [language],
+    })
+    .toPromise()
 
-  if (errors) throw new Error('error fetching article')
+  const { data, error } = result
+
+  if (error || !data) throw new Error('error fetching article')
 
   if (!data.article) return null
 
@@ -82,24 +102,28 @@ export const getArticleTitle = async (
   locale?: string | null,
 ): Promise<GetArticleTitleQuery['article']> => {
   const language = locale || 'en'
-  const result = await fetchFromGraphQL(GetArticleTitle, {
-    slug,
-    locale: [language],
-  })
+  const result = await graphCmsClient
+    .query<GetArticleTitleQuery>(GetArticleTitle, {
+      slug,
+      locale: [language],
+    })
+    .toPromise()
 
-  const { data, errors } = result
+  const { data, error } = result
 
-  if (errors) throw new Error('error fetching article')
+  if (error || !data) throw new Error('error fetching article')
 
   return data.article
 }
 
 export const getHomeInfo = async (): Promise<GetHomeInfoQuery> => {
-  const result = await fetchFromGraphQL(GetHomeInfo)
+  const result = await graphCmsClient
+    .query<GetHomeInfoQuery>(GetHomeInfo)
+    .toPromise()
 
-  const { data, errors } = result
+  const { data, error } = result
 
-  if (errors) throw new Error('error fetching home info')
+  if (error || !data) throw new Error('error fetching home info')
 
   return {
     articles: data.articles,
@@ -110,21 +134,49 @@ export const getHomeInfo = async (): Promise<GetHomeInfoQuery> => {
 export const getBookmarks = async (
   first = 3,
 ): Promise<GetBookmarksQuery['bookmarks']> => {
-  const result = await fetchFromGraphQL(GetBookmarks, { first })
+  const result = await graphCmsClient
+    .query<GetBookmarksQuery>(GetBookmarks, { first })
+    .toPromise()
 
-  const { data, errors } = result
+  const { data, error } = result
 
-  if (errors) throw new Error('error fetching bookmarks')
+  if (error || !data) throw new Error('error fetching bookmarks')
 
   return data.bookmarks
 }
 
 export const getWatch = async (first = 3): Promise<GetWatchQuery['links']> => {
-  const result = await fetchFromGraphQL(GetWatch, { first })
+  const result = await graphCmsClient
+    .query<GetWatchQuery>(GetWatch, { first })
+    .toPromise()
 
-  const { data, errors } = result
+  const { data, error } = result
 
-  if (errors) throw new Error('error fetching bookmarks')
+  if (error || !data) throw new Error('error fetching bookmarks')
 
   return data.links
+}
+
+export const getLinks = async () => {
+  const result = await graphCmsClient.query<GetLinksQuery>(GetLinks).toPromise()
+
+  const { data, error } = result
+
+  if (error || !data) throw new Error('error fetching links')
+
+  return data
+}
+
+export const getLink = async (id: string): Promise<GetLinkQuery['link']> => {
+  const result = await graphCmsClient
+    .query<GetLinkQuery>(GetLink, {
+      id,
+    })
+    .toPromise()
+
+  const { data, error } = result
+
+  if (error || !data) throw new Error('error fetching link')
+
+  return data.link
 }

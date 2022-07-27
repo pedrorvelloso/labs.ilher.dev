@@ -5,7 +5,6 @@ documents: 'app/**/*.{ts,tsx,gql,graphql}'
 generates:
   app/generated/graphql.ts:
     config:
-      avoidOptionals: true
       useImplementingTypes: true
       useTypeImports: true
     plugins:

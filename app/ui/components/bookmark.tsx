@@ -4,16 +4,16 @@ import { Icon } from './icon'
 interface BookmarkProps {
   url: string
   title: string
+  href?: string
 }
 
-export const Bookmark = ({ title, url }: BookmarkProps) => {
+export const Bookmark = ({ title, url, href }: BookmarkProps) => {
   const origin = new URL(url).origin
 
   return (
     <BoxAnchor
-      href={url}
+      href={href || url}
       inline
-      target="_blank"
       className="flex items-center justify-between"
     >
       <div className="flex flex-col gap-y-2 w-[85%] lg:w-fit">

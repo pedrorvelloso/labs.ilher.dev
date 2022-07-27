@@ -22,11 +22,11 @@ export const routes = {
   watch: '/watch',
 }
 
-export const menuList: Array<
-  CommonMenuItem & {
-    color?: NavAnchorProps['color']
-  }
-> = [
+export type NavMenuItem = CommonMenuItem & {
+  color?: NavAnchorProps['color']
+}
+
+export const menuList: Array<NavMenuItem> = [
   {
     name: 'Home',
     href: routes.home,
@@ -60,6 +60,22 @@ export const menuList: Array<
     icon: <Icon name="watch" />,
     shortcut: ['g', 'w'],
     keywords: 'watch streams live coding',
+    section: Section.NAVIGATION,
+  },
+]
+
+export const adminRoutes = {
+  links: '/admin/links',
+}
+
+export const adminMenuList: Array<NavMenuItem> = [
+  {
+    name: 'Links',
+    href: adminRoutes.links,
+    color: 'green',
+    icon: <Icon name="bookmark" />,
+    shortcut: ['g', 'l'],
+    keywords: 'writing words',
     section: Section.NAVIGATION,
   },
 ]

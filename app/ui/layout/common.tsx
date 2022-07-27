@@ -1,3 +1,5 @@
+import { menuList } from '~/utils/menu'
+
 import { Footer } from '../compositions/footer'
 import { Header } from '../compositions/header'
 
@@ -6,7 +8,7 @@ export const CommonLayout: React.FC<React.PropsWithChildren<unknown>> = ({
 }) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <Header routes={menuList} />
       <div className="my-20 flex-auto">{children}</div>
       <Footer />
     </div>

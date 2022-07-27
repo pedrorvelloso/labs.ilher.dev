@@ -31,7 +31,6 @@ export const Grid = <
         'grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 lg:gap-x-8',
         {
           'max-w-3xl mx-auto px-8': !onlyGrid,
-          // 'max-w-3xl mx-auto px-6': featured,
         },
         className,
       )}

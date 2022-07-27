@@ -1,4 +1,4 @@
-import { gql } from '~/utils/graphql'
+import { gql } from '@urql/core'
 
 // get articles
 export const GetArticles = gql`
@@ -68,6 +68,14 @@ export const GetHomeInfo = gql`
   }
 `
 
+const CommonLinkFieldsFragment = gql`
+  fragment CommonLinkFieldsFragment on ExternalUrl {
+    id
+    title
+    url
+  }
+`
+
 export const GetBookmarks = gql`
   query GetBookmarks($limit: Int) {
     bookmarks: externalUrls(
@@ -75,18 +83,46 @@ export const GetBookmarks = gql`
       orderBy: publishedAt_DESC
       where: { type: bookmark }
     ) {
-      title
-      url
+      ...CommonLinkFieldsFragment
     }
   }
+
+  ${CommonLinkFieldsFragment}
 `
 
 export const GetWatch = gql`
   query GetWatch($first: Int) {
     links: externalUrls(where: { type: stream }, first: $first) {
-      title
-      url
+      ...CommonLinkFieldsFragment
       content
     }
   }
+
+  ${CommonLinkFieldsFragment}
+`
+
+export const GetLinks = gql`
+  query GetLinks {
+    watch: externalUrls(where: { type: stream }) {
+      ...CommonLinkFieldsFragment
+      content
+    }
+    bookmarks: externalUrls(where: { type: bookmark }) {
+      ...CommonLinkFieldsFragment
+    }
+
+    ${CommonLinkFieldsFragment}
+  }
+`
+
+export const GetLink = gql`
+  query GetLink($id: ID!) {
+    link: externalUrl(where: { id: $id }) {
+      ...CommonLinkFieldsFragment
+      content
+      type
+    }
+  }
+
+  ${CommonLinkFieldsFragment}
 `

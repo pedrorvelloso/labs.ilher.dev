@@ -32,7 +32,6 @@ export const Footer = () => {
                 <li key={name}>
                   <Anchor
                     href={href}
-                    target="_blank"
                     className="text-neutral-400/90 hover:text-neutral-300 transition-colors"
                   >
                     {name}
@@ -54,7 +53,7 @@ export const Footer = () => {
               All rights reserved © Pedro R. Santos {new Date().getFullYear()}
             </Text>
             <div className="select-none cursor-pointer">
-              <Anchor href="https://remix.run/" target="_blank">
+              <Anchor href="https://remix.run/">
                 <Text size="sm" className="text-white">
                   Built with
                 </Text>

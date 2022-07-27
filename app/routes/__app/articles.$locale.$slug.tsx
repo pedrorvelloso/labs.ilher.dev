@@ -98,7 +98,6 @@ const ArticlePage = () => {
               url: `${origin}${routes.articles}/${article.locale}/${article.slug}`,
               text: tweetMessage,
             })}`}
-            target="_blank"
             className="col-span-full flex items-center gap-x-2 text-neutral-500 hover:text-neutral-300 transition-colors mt-6"
           >
             Tweet this article <Icon name="twitter" />

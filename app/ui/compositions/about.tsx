@@ -10,7 +10,6 @@ export const About = () => {
         <Anchor
           href="https://southsystem.com.br/"
           className="text-south-system hover:underline"
-          target="_blank"
         >
           South System
         </Anchor>{' '}
@@ -23,7 +22,6 @@ export const About = () => {
         <Anchor
           href="https://twitch.tv/ilher"
           className="text-purple-400 hover:underline"
-          target="_blank"
         >
           this link
         </Anchor>{' '}
