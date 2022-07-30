@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+
 import { Heading } from './typograph'
-import { Button } from './button'
 
 interface ModalProps {
   isOpen: boolean
   onClose(): void
   title: string
-  actions?: React.ReactNode
 }
 
 export const Modal = ({
@@ -15,7 +14,6 @@ export const Modal = ({
   onClose,
   title,
   children,
-  actions,
 }: React.PropsWithChildren<ModalProps>) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -46,8 +44,7 @@ export const Modal = ({
                 <Dialog.Title as={Heading} size="subtitle">
                   {title}
                 </Dialog.Title>
-                <div className="mt-5">{children}</div>
-                {actions && <div className="mt-5">{actions}</div>}
+                {children}
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -55,4 +52,14 @@ export const Modal = ({
       </Dialog>
     </Transition>
   )
+}
+
+export const ModalContent = ({
+  children,
+}: React.PropsWithChildren<unknown>) => {
+  return <div className="mt-5">{children}</div>
+}
+
+export const ModalAction = ({ children }: React.PropsWithChildren<unknown>) => {
+  return <div className="mt-5">{children}</div>
 }

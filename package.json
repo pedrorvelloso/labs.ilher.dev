@@ -36,7 +36,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "refractor": "^4.7.0",
-    "remix": "^1.6.5"
+    "remix": "^1.6.5",
+    "zod": "^3.17.10"
   },
   "devDependencies": {
     "@cld-apis/types": "^0.1.6",
