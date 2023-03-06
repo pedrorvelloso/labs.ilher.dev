@@ -8,10 +8,10 @@ import { getEnv } from '~/utils/misc'
 import { UpdateLink } from './graphql.admin'
 
 const graphCmsAdminClient = createClient({
-  url: getEnv('GCMS_URL_MANAGEMENT'),
+  url: getEnv('GCMS_URL'),
   fetchOptions: {
     headers: {
-      Authorization: `Bearer ${getEnv('GCMS_TOKEN')}`,
+      Authorization: `Bearer ${getEnv('GCMS_TOKEN_MANAGEMENT')}`,
     },
   },
 })

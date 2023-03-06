@@ -60,6 +60,8 @@ export const loader: LoaderFunction = ({ request }) => {
   })
 }
 
+export const unstable_shouldReload = () => false
+
 export default function App() {
   const location = useLocation()
 
